@@ -21,6 +21,7 @@ Replace this text with your project description and list the key features below
 ## Project Links
 
 - [GitHub repo for the project](https://github.com/waimea-hwstringer/300dtd-finance-website)
+- [Project documentation](https://waimea-hwstringer.github.io/300dtd-finance-website/)
 - [Live web app](https://...)
 
 
