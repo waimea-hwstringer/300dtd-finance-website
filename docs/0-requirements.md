@@ -78,37 +78,37 @@ I will need to consider aspects like my colour palette when moving forward. I sh
 
 ## Social
 
-The social implication essentially means how the website affects its users and society as a whole.
+The social implication means how the website affects its users and society as a whole.
 
 ### Relevance to the System
 
-My website will have a very wide range of users, that may not have a whole lot in common. 
+My website will have a very wide range of users, that may not have a whole lot in common. I should keep that users of the site must 
 
 Replace this text with an explanation of why the implication is relevant to this particular project.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+ I will need to consider the diverse group of people using the site. People will have different beliefs, cultures and identities. I should use neutral terms and phrasings, and not include polarising language. When testing my site, I should ask if users feel offended by anything. This will guarantee that my site will be socially sensitive and modern.
 
 
 
 ## Accessibility
 
-Replace this text with a clear explanation of what the implication means.
+The accessibility implication means that the site should be available to all end users regardless of their device, capabilities or skill set.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+Accessibility is a necessity when it comes to designing a website. Users will have different devices that they use the site on. They will also have different conditions and abilities that will dictate how they use the website.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+I should test the website on a variety of devices, such as laptops, tablets and mobile phones to ensure that it is accessible on all devices. I must also make sure that people with different capabilities are able to easily use the site. For example, when deciding a colour palette I should keep in mind that some users may be colour blind. I should check that the palette still looks good by validating this with a colour blind tester.
 
 
 
 ## End Users
 
-Replace this text with a clear explanation of what the implication means.
+End users are the people that use your website.
 
 ### Relevance to the System
 

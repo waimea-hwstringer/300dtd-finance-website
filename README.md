@@ -9,6 +9,8 @@ by Harry Stringer
 
 Replace this text with your project description and list the key features below
 
+Financial advice project.
+
 - Feature 1 here
 - Feature 2 here
 - Feature 3 here
