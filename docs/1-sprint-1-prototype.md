@@ -14,31 +14,46 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 Replace this text with notes regarding the DB design.
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+The database will have a users table that has all the info on the user (tier, name, email). 
+There will be a posts table with an author linked from the users table, and a comments table linked to a user and a post.
 
+![Initial Database](screenshots/db1.png)
 
 ### Required Data Input
 
-Replace this text with a description of what data will be input, and where / how it will be obtained.
+When creating an account, the user will provide important info such as their name and email. They will apply for a tier but this will only work if an admin verifies that they have paid.
+
+For posts, values like the author and date will be generated automatically depending on who's making the post and when. The title, content and minimum tier will be directly entered by the author.
+
+For comments, the author, post and date will be generated. The only thing supplied by the user is the main content.
 
 ### Required Data Output
 
-Replace this text with a description of the outputs for the system - what types of data will be displayed?
+Users will only have their username on display and maybe their tier to protect their privacy.
+
+Posts will display the author, title, content and date. They will also embed the video link so that the video is watchable without leaving the site.
+
+Comments will display the author's info, date and content.
 
 ### Required Data Processing
 
-Replace this text with a description of how the data will be processed to achieve the desired output(s) - any processes / formulae?
+When the users create the password for their account, we will run it through a password hash for security reasons. This way, if we have a leak the passwords will be indecipherable.
+
+The verified portion of the users table will default to false until this is changed by an admin when the user pays.
 
 
 ---
 
 ## UI 'Flow'
 
+18/07/2025
+
 The first stage of prototyping was to explore how the UI might 'flow' between states, based on the required functionality.
 
 This Figma demo shows the initial design for the UI 'flow':
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/tIPZUMTlOK6tkU3U4MgK0q/300DTD-Finance-1?node-id=1-3&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3&embed-host=share" allowfullscreen></iframe>
+
 
 ### Testing
 
@@ -46,9 +61,13 @@ Replace this text with notes about what you did to test the UI flow and the outc
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+I want to add a page that has more detailed information about the post like the date etc.
 
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+It would feel better to make a post from the home page rather than having to click on my account. You should also be able to click on a post and view it from the users account.
+
+There needs to be an admin dashboard page.
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/aN2B4ynyy9LErcBxPE8BQN/300DTD-Finance-1.5?node-id=1-3&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3&embed-host=share" allowfullscreen></iframe>
 
 
 ---
@@ -59,7 +78,7 @@ The next stage of prototyping was to develop the layout for each screen of the U
 
 This Figma demo shows the initial layout design for the UI:
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/LlO1ZkvAgD5UHY4UPaY7y2/300DTD-Finance-2?scaling=scale-down&content-scaling=fixed&page-id=0%3A1&node-id=2002-2&starting-point-node-id=2002%3A2&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
