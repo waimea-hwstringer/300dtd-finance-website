@@ -61,11 +61,11 @@ Replace this text with notes about what you did to test the UI flow and the outc
 
 ### Changes / Improvements
 
-I want to add a page that has more detailed information about the post like the date etc.
+> "I want to add a page that has more detailed information about the post like the date etc. It would feel better to make a post from the home page rather than having to click on my account. You should also be able to click on a post and view it from the users account. There needs to be an admin dashboard page where I can activate/control accounts."
 
-It would feel better to make a post from the home page rather than having to click on my account. You should also be able to click on a post and view it from the users account.
-
-There needs to be an admin dashboard page.
+- detailed view of posts when posts are clicked on
+- make posts from account and home page
+- admin dashboard to activate accounts
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/aN2B4ynyy9LErcBxPE8BQN/300DTD-Finance-1.5?node-id=1-3&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3&embed-host=share" allowfullscreen></iframe>
 
@@ -73,6 +73,8 @@ There needs to be an admin dashboard page.
 ---
 
 ## Initial UI Prototype
+
+25/07/2025
 
 The next stage of prototyping was to develop the layout for each screen of the UI.
 
@@ -86,9 +88,15 @@ Replace this text with notes about what you did to test the UI flow and the outc
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+> "Rounded corners on certain elements would make the site clearer and easier to read. The fields where text is entered are too large. I want The links on the navbar to look like buttons rather than text/links. The buttons on the landing take up too much room, I'd prefer them to be side by side. I think there needs to be a more clear way to indicate that the user is signed in, such as adding their name in the navbar instead of 'my account'. Having the logout button on so many pages seems redundant, I think it would be better to just have it on the user's account page."
 
-*FIGMA IMPROVED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+- round corners
+- navbar links look like buttons
+- landing page buttons side by side
+- username displayed on navbar when logged in
+- logout page only on user account page
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/IJVfNhWAO7L2zfN3k6Vk2E/300DTD-Finance-3?node-id=2002-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2002%3A2&embed-host=share" allowfullscreen></iframe>
 
 
 ---
