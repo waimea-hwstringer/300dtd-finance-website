@@ -19,6 +19,14 @@ There will be a posts table with an author linked from the users table, and a co
 
 ![Initial Database](screenshots/db1.png)
 
+After I finished making this mockup I discussed the site further with my client. We soon understood that he wanted users to be able to post comments on people's posts.
+
+> "I feel like it would make the site feel much more active to let users post comments."
+
+I amended my database to have a comments table.
+
+![Alt text](screenshots/db2.png)
+
 ### Required Data Input
 
 When creating an account, the user will provide important info such as their name and email. They will apply for a tier but this will only work if an admin verifies that they have paid.
@@ -39,7 +47,6 @@ Comments will display the author's info, date and content.
 
 When the users create the password for their account, we will run it through a password hash for security reasons. This way, if we have a leak the passwords will be indecipherable.
 
-The verified portion of the users table will default to false until this is changed by an admin when the user pays.
 
 
 ---
@@ -69,6 +76,10 @@ Replace this text with notes about what you did to test the UI flow and the outc
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/aN2B4ynyy9LErcBxPE8BQN/300DTD-Finance-1.5?node-id=1-3&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3&embed-host=share" allowfullscreen></iframe>
 
+Because the admin must verify whether or not the user has paid, I must add a 'verified' column to the users table. This will be true or false so it must be a boolean.
+
+![users table with a verified column](screenshots/db2.png)
+
 
 ---
 
@@ -97,6 +108,10 @@ Replace this text with notes about what you did to test the UI flow and the outc
 - logout page only on user account page
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/IJVfNhWAO7L2zfN3k6Vk2E/300DTD-Finance-3?node-id=2002-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2002%3A2&embed-host=share" allowfullscreen></iframe>
+
+After making these changes my client was happy with the design.
+
+> "looks great!"
 
 
 ---
