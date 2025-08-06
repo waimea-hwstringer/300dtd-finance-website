@@ -64,7 +64,9 @@ This Figma demo shows the initial design for the UI 'flow':
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I tested the flow by doing tasks that the user will commonly be doing such as logging in and creating posts.
+
+I also provided my client with this UI flow model to get some feedback, as seen below.
 
 ### Changes / Improvements
 
@@ -95,11 +97,11 @@ This Figma demo shows the initial layout design for the UI:
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I showed this prototype to my client and a potential user of the site. I told them to use it just as if they were actually interested in the service, but wanted to see how the site felt. Below is the feedback that I obtained. I also kept Nielsen's usability heuristics in mind when listening to their feedback.
 
 ### Changes / Improvements
 
-> "Rounded corners on certain elements would make the site clearer and easier to read. The fields where text is entered are too large. I want The links on the navbar to look like buttons rather than text/links. The buttons on the landing take up too much room, I'd prefer them to be side by side. I think there needs to be a more clear way to indicate that the user is signed in, such as adding their name in the navbar instead of 'my account'. Having the logout button on so many pages seems redundant, I think it would be better to just have it on the user's account page."
+> "Overall the website felt pretty good to use. Rounded corners on certain elements would make the site clearer and easier to read. The fields where text is entered are too large. I want The links on the navbar to look like buttons rather than text/links. The buttons on the landing take up too much room, I'd prefer them to be side by side. I think there needs to be a more clear way to indicate that the user is signed in, such as adding their name in the navbar instead of 'my account'. Having the logout button on so many pages seems redundant, I think it would be better to just have it on the user's account page."
 
 - round corners
 - navbar links look like buttons
@@ -122,11 +124,11 @@ Having established the layout of the UI screens, the prototype was refined visua
 
 This Figma demo shows the UI with refinements applied:
 
-*FIGMA REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/4IoJXtK2X5YmhsansBjAUh/300DTD-Finance-4?node-id=2002-2&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2002%3A2&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I showed this color palette to my client, but he didn't like it.
 
 ### Changes / Improvements
 
