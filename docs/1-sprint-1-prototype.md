@@ -12,8 +12,6 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
-
 The database will have a users table that has all the info on the user (tier, name, email). 
 There will be a posts table with an author linked from the users table, and a comments table linked to a user and a post.
 
@@ -29,7 +27,7 @@ I amended my database to have a comments table.
 
 ### Required Data Input
 
-When creating an account, the user will provide important info such as their name and email. They will apply for a tier but this will only work if an admin verifies that they have paid.
+When creating an account, the user will provide important info such as their name and email. They will select a specific tier which they will have to pay for.
 
 For posts, values like the author and date will be generated automatically depending on who's making the post and when. The title, content and minimum tier will be directly entered by the author.
 
