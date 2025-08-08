@@ -80,7 +80,7 @@ I also provided my client with this UI flow model to get some feedback, as seen 
 
 Because the admin must verify whether or not the user has paid, I must add a 'verified' column to the users table. This will be true or false so it must be a boolean.
 
-![users table with a verified column](screenshots/db2.png)
+![users table with a verified column](screenshots/db3.png)
 
 
 ---
@@ -120,7 +120,11 @@ After making these changes my client was happy with the design.
 
 ## Refined UI Prototype
 
+01/06/2025
+
 Having established the layout of the UI screens, the prototype was refined visually, in terms of colour, fonts, etc.
+
+I used [Real Time Colors](https://www.realtimecolors.com/?colors=0C1613-FAFCFC-5CA58B-A1BBCB-7D8FB7&fonts=Inter-Inter) to generate this color palette.
 
 This Figma demo shows the UI with refinements applied:
 
@@ -130,16 +134,30 @@ This Figma demo shows the UI with refinements applied:
 
 I showed this color palette to my client, but he didn't like it.
 
+> "I would prefer a darker blue as it feels more professional. I'd also rather have a deep red than that green color."
+
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+08/08/2025
 
-*FIGMA IMPROVED REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+I then generated a palette using the website [Real Time Colors](https://www.realtimecolors.com/?colors=0c153b-eef0f3-842828-374788-363d5a&fonts=Inter-Inter). I made some small adjustments to keep it in line with what my client requested and to keep the site readable. I then imported it into my mockup.
+I also made some additional refinements such as adding profile icons for the comments.
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/AWuAyhNvED0q1mcBkyphB5/300DTD-Finance-5?node-id=2002-2&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2002%3A2&embed-host=share" allowfullscreen></iframe>
+
+After showing this to my client, he was much happier with the design.
+
+> "That looks much better. I'm happy with this design."
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+
+To summarise the design stage of the site's development, I communicated with my client regularly and adapted my design to fit with their view. I changed the database, flow, structure and aesthetics of the website many times.
+
+The design went well and was easy to make. [Excalidraw](https://excalidraw.com) was used to design the flow. [DrawSQL](https://drawsql.app) was used to make the database mockup. [Figma](https://www.figma.com/) was used to develop the working prototypes.
+
+I am now finished the design stage ('sprint one') and am ready to start developing the site ('sprint two').
 
