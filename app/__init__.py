@@ -17,6 +17,9 @@ from app.helpers.logging import init_logging
 from app.helpers.auth    import login_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
 
+# GIT BASH
+# source venv/Scripts/activate
+# flask run --debug
 
 # Create the app
 app = Flask(__name__)
@@ -29,19 +32,27 @@ init_datetime(app)  # Handle UTC dates in timestamps
 
 
 #-----------------------------------------------------------
-# Home page route
+# Landing page route
 #-----------------------------------------------------------
 @app.get("/")
 def index():
+    return render_template("pages/landing.jinja")
+
+
+#-----------------------------------------------------------
+# Home page route (posts feed)
+#-----------------------------------------------------------
+@app.get("/home/")
+def about():
     return render_template("pages/home.jinja")
 
 
 #-----------------------------------------------------------
-# About page route
+# Make a post form route
 #-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
+@app.get("/make-a-post/")
+def login_form():
+    return render_template("pages/makeapost.jinja")
 
 
 #-----------------------------------------------------------
@@ -179,8 +190,10 @@ def login_form():
 def add_user():
     # Get the data from the form
     name = request.form.get("name")
+    email = request.form.get("email")
     username = request.form.get("username")
     password = request.form.get("password")
+    tier = request.form.get("tier")
 
     with connect_db() as client:
         # Attempt to find an existing record for that user
@@ -190,15 +203,17 @@ def add_user():
 
         # No existing record found, so safe to add the user
         if not result.rows:
-            # Sanitise the name
+            # Sanitise the text
             name = html.escape(name)
-
+            email = html.escape(email)
+            username = html.escape(username)
+            
             # Salt and hash the password
             hash = generate_password_hash(password)
 
             # Add the user to the users table
-            sql = "INSERT INTO users (name, username, password_hash) VALUES (?, ?, ?)"
-            params = [name, username, hash]
+            sql = "INSERT INTO users (name, email, username, password_hash, tier) VALUES (?, ?, ?, ?, ?)"
+            params = [name, email, username, hash, tier]
             client.execute(sql, params)
 
             # And let them know it was successful and they can login

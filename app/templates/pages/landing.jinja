@@ -1,0 +1,38 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of things passed in as 'things' array
+  - Form for adding a new thing
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Finance Landing
+
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>FINANCE</h1>
+
+    <p>Courses by experts, tailored for everyone. Learn actually useful information and save your money.</p>
+
+    <ul>
+        <li>Easy to understand</li>
+        <p>Our information is designed to be used by everyone. Get easily digestible knowledge quickly.</p>
+        <li>Useful Information</li>
+        <p>We pride ourselves in having info that is actually helpful. No fluff or time-wasters.</p>
+        <li>Talk to experts</li>
+        <p>We have a team of experts that you can freely reach out to should you need any advice.</p>
+    </ul>
+
+    <a href="/login" role="button">Log In</a>
+
+    <a href="/register" role="button">Register</a>
+
+{% endblock %}
+
