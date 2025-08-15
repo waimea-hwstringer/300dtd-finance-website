@@ -22,6 +22,22 @@
 
     <p>Posts will appear here.</p>
 
+    {% for post in posts %}
+
+    <li>
+      <a href="/post/{{ post.p_id }}">
+        <strong>{{ post.title }}</strong> - by {{ post.username }}
+      </a>
+    </li>
+
+    {% else %}
+
+      <p>No posts!</p>
+
+    {% endfor %}
+
+    <br>
+    
     <a href="/make-a-post" role="button">Make a post</a>
 
 {% endblock %}

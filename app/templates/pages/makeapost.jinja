@@ -22,37 +22,30 @@
             
         </header>
 
-        <form action="/add-user" method="POST">
+        <form action="/add-post" method="POST">
 
             <input
                 type="text"
-                name="name"
-                placeholder="First name..."
-                required
-            >
-
-            <input
-                type="email"
-                name="email"
-                placeholder="Email..."
+                name="title"
+                placeholder="Title..."
                 required
             >
 
             <input
                 type="text"
-                name="username"
-                placeholder="Username..."
+                name="content"
+                placeholder="Content..."
                 required
             >
 
             <input
-                type="password"
-                name="password"
-                placeholder="Password..."
+                type="text"
+                name="video"
+                placeholder="Video URL..."
                 required
             >
 
-            <p>Explanation about different accounts</p>
+            <p>Minimum account that can still see this post</p>
 
             <input 
                 type="radio"
@@ -60,7 +53,7 @@
                 value="1"
                 label="free"
             > 
-            <label for="free">Basic - Free</label>
+            <label for="free">Basic</label>
 
             <input 
                 type="radio"
@@ -89,7 +82,7 @@
             <br>
             <br>
 
-            <button>Submit</button>
+            <button>Publish</button>
 
         </form>
 

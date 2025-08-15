@@ -43,16 +43,151 @@ def index():
 # Home page route (posts feed)
 #-----------------------------------------------------------
 @app.get("/home/")
-def about():
-    return render_template("pages/home.jinja")
+
+def home():
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = """
+            SELECT 
+                posts.id AS p_id,
+                posts.author,
+                posts.title,
+                posts.content,
+                posts.video_url,
+                posts.min_tier,
+                users.id AS u_id,
+                users.username,
+                users.tier 
+            FROM posts
+            JOIN users ON posts.author = users.id
+        """
+        params=[]
+        result = client.execute(sql, params)
+        posts = result.rows
+
+        # And show them on the page
+        return render_template("pages/home.jinja", posts=posts)
+
+#-----------------------------------------------------------
+# Thing page route - Show details of a single thing
+#-----------------------------------------------------------
+@app.get("/post/<int:id>")
+def show_one_post(id):
+    with connect_db() as client:
+        # Get the thing details from the DB, including the owner info
+        sql = """
+            SELECT 
+                posts.id AS p_id,
+                posts.author,
+                posts.title,
+                posts.content,
+                posts.video_url,
+                posts.min_tier,
+                posts.date,
+                users.id AS u_id,
+                users.username
+            FROM posts
+            JOIN users ON posts.author = users.id
+            WHERE p_id=?
+        """
+        params = [id]
+        result = client.execute(sql, params)
+
+        # Did we get a result?
+        if result.rows:
+            # yes, so show it on the page
+            post = result.rows[0]
+
+        else:
+            # No, so show error
+            return not_found_error()
+        
+        # Get the thing details from the DB, including the owner info
+        sql = """
+            SELECT 
+                comments.id     AS c_id,
+                comments.author AS c_author,
+                comments.post   AS c_post
+                
+            FROM comments
+            JOIN users ON c_author = users.id
+            WHERE p_id=?
+        """
+        params = [id]
+        result = client.execute(sql, params)
+        
+        return render_template("pages/post.jinja", post=post)
+
+#-----------------------------------------------------------
+# Route for making a post
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.post("/add-comment")
+@login_required
+def add_a_comment():
+    # Get the data from the form
+    content = request.form.get("content")
+
+    # Sanitise the text inputs
+    content = html.escape(content)
+
+    # Get the user information from the session
+    user_id = session["user_id"]
+
+    post = 1
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = "INSERT INTO comments (author, post, content) VALUES (?, ?, ?)"
+        params = [user_id, post, content]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Comment created", "success")
+        return redirect("/home")
+
+
 
 
 #-----------------------------------------------------------
 # Make a post form route
 #-----------------------------------------------------------
 @app.get("/make-a-post/")
-def login_form():
+def make_a_post_form():
     return render_template("pages/makeapost.jinja")
+
+#-----------------------------------------------------------
+# Route for making a post
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.post("/add-post")
+@login_required
+def add_a_post():
+    # Get the data from the form
+    title   = request.form.get("title")
+    content = request.form.get("content")
+    video   = request.form.get("video")
+    tier    = request.form.get("tier")
+
+
+    # Sanitise the text inputs
+    title = html.escape(title)
+    content = html.escape(content)
+    video = html.escape(video)
+
+    # Get the user information from the session
+    user_id = session["user_id"]
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = "INSERT INTO posts (author, title, content, video_url, min_tier) VALUES (?, ?, ?, ?, ?)"
+        params = [user_id, title, content, video, tier]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Post '{title}' created", "success")
+        return redirect("/home")
+
 
 
 #-----------------------------------------------------------
@@ -251,11 +386,12 @@ def login_user():
                 # Yes, so save info in the session
                 session["user_id"]   = user["id"]
                 session["user_name"] = user["name"]
+                session["user_username"] = user["username"]
                 session["logged_in"] = True
 
                 # And head back to the home page
                 flash("Login successful", "success")
-                return redirect("/")
+                return redirect("/home")
 
         # Either username not found, or password was wrong
         flash("Invalid credentials", "error")

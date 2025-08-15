@@ -1,0 +1,56 @@
+{#=====================================================
+  Singular post page
+  - Shows details of one post
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    {{post.title}}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <article>
+
+        <header>
+            <h1>{{post.title}}</h1>
+            <h4>by <a>{{ post.username }}</a>👤 - {{ post.date }}</h4>
+        </header>
+
+        <p>{{ post.content }}</p>
+
+        <footer>
+
+            {# Only show delete link if logged in AND owner #}
+            {% if session.user_id and (post.author == session.user_id) %}
+
+                <a href="/delete/{{ post.p_id }}" onclick="return confirm('Really delete?');">Delete</a>
+
+            {% endif %}
+            
+
+        </footer>
+
+        <br>
+
+        <form action="/add-comment" method="POST">
+
+            <input
+                type="text"
+                name="content"
+                placeholder="Make a comment..."
+                required
+            >
+        
+            <button>Post Comment</button>
+        </form>
+
+    </article>
+
+{% endblock %}
+
