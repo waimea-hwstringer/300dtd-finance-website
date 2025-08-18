@@ -29,7 +29,7 @@
             {# Only show delete link if logged in AND owner #}
             {% if session.user_id and (post.author == session.user_id) %}
 
-                <a href="/delete/{{ post.p_id }}" onclick="return confirm('Really delete?');">Delete</a>
+                <a href="/delete-post/{{ post.p_id }}" onclick="return confirm('Really delete?');">Delete</a>
 
             {% endif %}
             
@@ -38,7 +38,7 @@
 
         <br>
 
-        <form action="/add-comment" method="POST">
+        <form action="/add-comment/{{ post.p_id }}" method="POST">
 
             <input
                 type="text"
@@ -50,6 +50,22 @@
             <button>Post Comment</button>
         </form>
 
+    </article>
+
+    <article>
+        {% for comment in comments %}
+
+            <li>
+                <span>{{ comment.c_username }} - {{ comment.c_date }}</span>
+                <p>{{ comment.c_content }}</p>
+            </li>
+
+        {% else %}
+
+            <p>No comments!</p>
+
+        {% endfor %}
+    
     </article>
 
 {% endblock %}

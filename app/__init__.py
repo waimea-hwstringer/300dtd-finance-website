@@ -88,7 +88,7 @@ def show_one_post(id):
                 users.username
             FROM posts
             JOIN users ON posts.author = users.id
-            WHERE p_id=?
+            WHERE posts.id=?
         """
         params = [id]
         result = client.execute(sql, params)
@@ -105,26 +105,29 @@ def show_one_post(id):
         # Get the thing details from the DB, including the owner info
         sql = """
             SELECT 
-                comments.id     AS c_id,
-                comments.author AS c_author,
-                comments.post   AS c_post
+                comments.id      AS c_id,
+                comments.author  AS c_author,
+                users.username   AS c_username,
+                comments.content AS c_content,
+                comments.date    AS c_date
                 
             FROM comments
-            JOIN users ON c_author = users.id
-            WHERE p_id=?
+            JOIN users ON comments.author = users.id
+            WHERE comments.post=?
         """
         params = [id]
         result = client.execute(sql, params)
+        comments = result.rows
         
-        return render_template("pages/post.jinja", post=post)
+        return render_template("pages/post.jinja", post=post, comments=comments)
 
 #-----------------------------------------------------------
 # Route for making a post
 # - Restricted to logged in users
 #-----------------------------------------------------------
-@app.post("/add-comment")
+@app.post("/add-comment/<int:id>")
 @login_required
-def add_a_comment():
+def add_a_comment(id):
     # Get the data from the form
     content = request.form.get("content")
 
@@ -134,7 +137,7 @@ def add_a_comment():
     # Get the user information from the session
     user_id = session["user_id"]
 
-    post = 1
+    post = id
 
     with connect_db() as client:
         # Add the thing to the DB
@@ -145,8 +148,6 @@ def add_a_comment():
         # Go back to the home page
         flash(f"Comment created", "success")
         return redirect("/home")
-
-
 
 
 #-----------------------------------------------------------
@@ -186,6 +187,26 @@ def add_a_post():
 
         # Go back to the home page
         flash(f"Post '{title}' created", "success")
+        return redirect("/home")
+    
+#-----------------------------------------------------------
+# Route for deleting a post, Id given in the route
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.get("/delete-post/<int:id>")
+@login_required
+def delete_a_post(id):
+    # Get the user id from the session
+    author = session["user_id"]
+
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = "DELETE FROM posts WHERE id=? AND author=?"
+        params = [id, author]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash("Post deleted", "success")
         return redirect("/home")
 
 
