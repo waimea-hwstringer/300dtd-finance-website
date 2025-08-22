@@ -1,0 +1,32 @@
+{#=====================================================
+  About page (DEMO)
+  - Information about Flask
+  - Information about Jinja
+  - Information about Turso
+  - Information about PicoCSS
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    User 
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% for post in posts %}
+
+      <p>Posts</p>
+
+    {% else %}
+
+      <p>No posts!</p>
+
+    {% endfor %}
+
+{% endblock %}
+

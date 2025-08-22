@@ -53,7 +53,7 @@ def home():
                 posts.author,
                 posts.title,
                 posts.content,
-                posts.video_url,
+                posts.video_id,
                 posts.min_tier,
                 users.id AS u_id,
                 users.username,
@@ -81,7 +81,7 @@ def show_one_post(id):
                 posts.author,
                 posts.title,
                 posts.content,
-                posts.video_url,
+                posts.video_id,
                 posts.min_tier,
                 posts.date,
                 users.id AS u_id,
@@ -147,7 +147,30 @@ def add_a_comment(id):
 
         # Go back to the home page
         flash(f"Comment created", "success")
-        return redirect("/home")
+        return redirect(f"/post/{post}")
+
+
+#-----------------------------------------------------------
+# Route for deleting a comment
+# - Post ID included in the route so that when the comment is deleted the user is redirected to the same post after deleting the comment
+# - Restricted to logged in users who authored the comment
+#-----------------------------------------------------------
+@app.get("/delete-comment/<int:p_id>/<int:c_id>")
+@login_required
+def delete_a_comment(p_id, c_id):
+    # Get the user id from the session
+    author = session["user_id"]
+
+    with connect_db() as client:
+        # Delete the comment from the DB 
+        sql = "DELETE FROM comments WHERE id=? AND author=?"
+        params = [c_id, author]
+        client.execute(sql, params)
+
+        # Go back to the post that the comment used to be on
+        flash("Comment deleted", "success")
+        return redirect(f"/post/{p_id}")
+
 
 
 #-----------------------------------------------------------
@@ -170,6 +193,11 @@ def add_a_post():
     video   = request.form.get("video")
     tier    = request.form.get("tier")
 
+    # Extract the yt video code from given url
+    if video:
+        vSplit = video.split("?v=")
+        vSplit = vSplit[1].split("&")
+        video = vSplit[0]
 
     # Sanitise the text inputs
     title = html.escape(title)
@@ -181,7 +209,7 @@ def add_a_post():
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO posts (author, title, content, video_url, min_tier) VALUES (?, ?, ?, ?, ?)"
+        sql = "INSERT INTO posts (author, title, content, video_id, min_tier) VALUES (?, ?, ?, ?, ?)"
         params = [user_id, title, content, video, tier]
         client.execute(sql, params)
 
@@ -209,6 +237,37 @@ def delete_a_post(id):
         flash("Post deleted", "success")
         return redirect("/home")
 
+
+#-----------------------------------------------------------
+# Make a post form route
+#-----------------------------------------------------------
+@app.get("/user/<int:id>")
+def user(id):
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = """
+            SELECT 
+                posts.id AS p_id,
+                posts.author,
+                posts.title,
+                posts.content,
+                posts.video_id,
+                posts.min_tier,
+                users.id AS u_id,
+                users.username,
+                users.tier 
+            FROM posts
+            
+            JOIN users ON posts.author = users.id
+
+            WHERE posts.author=?
+        """
+        params=[id]
+        result = client.execute(sql, params)
+        posts = result.rows
+
+        # And show them on the page
+        return render_template(f"pages/user/{id}.jinja", posts=posts)
 
 
 #-----------------------------------------------------------

@@ -1,5 +1,5 @@
 /*=====================================================
-  User stylesheet - Building upon PicoCSS
+  User style sheet - Building upon PicoCSS
 =====================================================*/
 
 
@@ -32,4 +32,8 @@
 
 #messages .message.success { color: var(--pico-color-green-500); }
 #messages .message.error   { color: var(--pico-color-red-500); }
+
+#comments {
+    list-style-type: none;
+}
 

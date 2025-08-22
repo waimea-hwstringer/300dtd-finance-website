@@ -40,13 +40,12 @@
             <ul>
                 {% if session.user_name %}
 
-                    <li>{{ session.user_username }} 👤 </li>
+                    <li><a href="/user/{{session.user_id}}">{{ session.user_username }} 👤 </a></li>
 
                 {% endif %}
 
                 <li><a href="/">Landing</a></li>
                 <li><a href="/home">Home</a></li>
-                <li><a href="/things">Things</a></li>
 
                 {% if session.user_id %}
 

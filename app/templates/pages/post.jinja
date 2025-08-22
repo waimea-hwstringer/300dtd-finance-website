@@ -24,6 +24,18 @@
 
         <p>{{ post.content }}</p>
 
+        {% if post.video_id %}
+            <iframe 
+                width="560" height="315" 
+                src="https://www.youtube.com/embed/{{ post.video_id }}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        {% endif %}
+
         <footer>
 
             {# Only show delete link if logged in AND owner #}
@@ -55,9 +67,14 @@
     <article>
         {% for comment in comments %}
 
-            <li>
-                <span>{{ comment.c_username }} - {{ comment.c_date }}</span>
-                <p>{{ comment.c_content }}</p>
+            <li id="comments">
+                <span>👤 {{ comment.c_username }} - {{ comment.c_date }}</span>
+                <p>
+                    {{ comment.c_content }}
+
+                    {% if session.user_id and (comment.c_author == session.user_id)%}
+                        <a href="delete-comment/{{ post.p_id }}/{{ comment.c_id }}">🗑</a></p> 
+                    {% endif %}
             </li>
 
         {% else %}
