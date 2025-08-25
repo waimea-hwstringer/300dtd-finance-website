@@ -11,20 +11,42 @@
 
 {% block title %}
 
-    User 
+    User {{user.username}}
 
 {% endblock %}
 
 
 {% block content %}
 
+    <h1> {{user.username}} </h1>
+
+    <p>Posts</p>
     {% for post in posts %}
 
-      <p>Posts</p>
+        <li>
+          <a href="/post/{{ post.p_id }}">
+            <strong>{{ post.title }}</strong> 
+          </a>
+        </li>
 
     {% else %}
 
       <p>No posts!</p>
+
+    {% endfor %}
+
+    <p>Comments</p>
+    {% for comment in comments %}
+
+        <li>
+          <a href="/post/{{ comment.post }}">
+            <strong>{{ comment.content }}</strong> 
+          </a>
+        </li>
+
+    {% else %}
+
+      <p>No comments!</p>
 
     {% endfor %}
 

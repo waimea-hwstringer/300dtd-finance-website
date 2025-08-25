@@ -176,9 +176,9 @@ def delete_a_comment(p_id, c_id):
 #-----------------------------------------------------------
 # Make a post form route
 #-----------------------------------------------------------
-@app.get("/make-a-post/")
+@app.get("/new-post/")
 def make_a_post_form():
-    return render_template("pages/makeapost.jinja")
+    return render_template("pages/post-new.jinja")
 
 #-----------------------------------------------------------
 # Route for making a post
@@ -239,12 +239,27 @@ def delete_a_post(id):
 
 
 #-----------------------------------------------------------
-# Make a post form route
+# User's profile page
 #-----------------------------------------------------------
 @app.get("/user/<int:id>")
 def user(id):
     with connect_db() as client:
-        # Get all the things from the DB
+
+        # Get all the user info from the DB
+        sql = """
+            SELECT username, tier
+            FROM   users
+            WHERE  id=?
+        """
+        params=[id]
+        result = client.execute(sql, params)
+        if result:
+            user = result.rows[0]
+        else:
+            return not_found_error()
+        
+
+        # Get all the user's posts from the DB
         sql = """
             SELECT 
                 posts.id AS p_id,
@@ -253,9 +268,7 @@ def user(id):
                 posts.content,
                 posts.video_id,
                 posts.min_tier,
-                users.id AS u_id,
-                users.username,
-                users.tier 
+                users.id AS u_id
             FROM posts
             
             JOIN users ON posts.author = users.id
@@ -266,119 +279,33 @@ def user(id):
         result = client.execute(sql, params)
         posts = result.rows
 
-        # And show them on the page
-        return render_template(f"pages/user/{id}.jinja", posts=posts)
+        # Get all the user's posts from the DB
 
-
-#-----------------------------------------------------------
-# Things page route - Show all the things, and new thing form
-#-----------------------------------------------------------
-@app.get("/things/")
-def show_all_things():
-    with connect_db() as client:
-        # Get all the things from the DB
         sql = """
-            SELECT things.id,
-                   things.name,
-                   users.name AS owner
-
-            FROM things
-            JOIN users ON things.user_id = users.id
-
-            ORDER BY things.name ASC
+            SELECT 
+                comments.id AS id,
+                NULL AS title,         -- comments don't have titles, videos etc
+                comments.content,
+                NULL AS video_id,
+                NULL AS min_tier,
+                comments.date,
+                'comment' AS type
+            FROM comments
+            WHERE comments.author=?
         """
-        params=[]
+        params=[id]
         result = client.execute(sql, params)
-        things = result.rows
+        comments = result.rows
 
-        # And show them on the page
-        return render_template("pages/things.jinja", things=things)
+        # Merge posts and comments into one timeline
+        activity = posts + comments
 
-
-#-----------------------------------------------------------
-# Thing page route - Show details of a single thing
-#-----------------------------------------------------------
-@app.get("/thing/<int:id>")
-def show_one_thing(id):
-    with connect_db() as client:
-        # Get the thing details from the DB, including the owner info
-        sql = """
-            SELECT things.id,
-                   things.name,
-                   things.price,
-                   things.user_id,
-                   users.name AS owner
-
-            FROM things
-            JOIN users ON things.user_id = users.id
-
-            WHERE things.id=?
-        """
-        params = [id]
-        result = client.execute(sql, params)
-
-        # Did we get a result?
-        if result.rows:
-            # yes, so show it on the page
-            thing = result.rows[0]
-            return render_template("pages/thing.jinja", thing=thing)
-
-        else:
-            # No, so show error
-            return not_found_error()
+        # Sort by date (assuming date is a comparable type, e.g. ISO string or datetime)
+        activity.sort(key=lambda x: x["date"], reverse=True)  # newest first
 
 
-#-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
-# - Restricted to logged in users
-#-----------------------------------------------------------
-@app.post("/add")
-@login_required
-def add_a_thing():
-    # Get the data from the form
-    name  = request.form.get("name")
-    price = request.form.get("price")
-
-    # Sanitise the text inputs
-    name = html.escape(name)
-
-    # Get the user id from the session
-    user_id = session["user_id"]
-
-    with connect_db() as client:
-        # Add the thing to the DB
-        sql = "INSERT INTO things (name, price, user_id) VALUES (?, ?, ?)"
-        params = [name, price, user_id]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash(f"Thing '{name}' added", "success")
-        return redirect("/things")
-
-
-#-----------------------------------------------------------
-# Route for deleting a thing, Id given in the route
-# - Restricted to logged in users
-#-----------------------------------------------------------
-@app.get("/delete/<int:id>")
-@login_required
-def delete_a_thing(id):
-    # Get the user id from the session
-    user_id = session["user_id"]
-
-    with connect_db() as client:
-        # Delete the thing from the DB only if we own it
-        sql = "DELETE FROM things WHERE id=? AND user_id=?"
-        params = [id, user_id]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash("Thing deleted", "success")
-        return redirect("/things")
-
-
-
-
+        # And show everything on the page
+        return render_template(f"pages/user.jinja", user=user, posts=posts, comments=comments)
 
 
 

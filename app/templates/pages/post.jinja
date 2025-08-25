@@ -73,7 +73,7 @@
                     {{ comment.c_content }}
 
                     {% if session.user_id and (comment.c_author == session.user_id)%}
-                        <a href="delete-comment/{{ post.p_id }}/{{ comment.c_id }}">🗑</a></p> 
+                        <a href="/delete-comment/{{ post.p_id }}/{{ comment.c_id }}">🗑</a></p> 
                     {% endif %}
             </li>
 
