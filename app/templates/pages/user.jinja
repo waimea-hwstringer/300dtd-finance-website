@@ -11,44 +11,57 @@
 
 {% block title %}
 
-    User {{user.username}}
+    User {{ user.username }}
 
 {% endblock %}
 
 
+
 {% block content %}
 
-    <h1> {{user.username}} </h1>
+    <h1> 👤 {{ user.username }} </h1>
 
-    <p>Posts</p>
-    {% for post in posts %}
+    {% if session.user_id == user.id %}
+        
+        <p>hello</p>
 
-        <li>
-          <a href="/post/{{ post.p_id }}">
-            <strong>{{ post.title }}</strong> 
-          </a>
-        </li>
+    {% endif %}
 
-    {% else %}
+    <br>
 
-      <p>No posts!</p>
+    <ul>
+        {% for item in items %}
+            
+            {% if item.type == "post" %}
+                <li>
+                    <strong><a href="/post/{{ item.p_id }}"> {{ item.title }} </a></strong>
+                    <small>{{ item.date }}</small>
+                    <br>
+                    <span>{{ item.content }}</span>
+                    {% if session.user_id == item.author %}
+                        <br>
+                        <span><a href="/delete-post/{{ item.p_id }}">delete</a></span>
+                    {% endif%}
+                </li>
 
-    {% endfor %}
+            {% elif item.type == "comment" %}
+        
+                <li>
+                    <strong><a href="/post/{{ item.post }}">See post ⬈</a></strong>
+                    <small>{{ item.date }}</small>
+                    <br>
+                    <span>{{ item.content }}</span>
+                    {% if session.user_id == item.author %}
+                        <br>
+                        <span><a>delete</a></span>
+                    {% endif%}
+                </li>
 
-    <p>Comments</p>
-    {% for comment in comments %}
+            {% endif %}
 
-        <li>
-          <a href="/post/{{ comment.post }}">
-            <strong>{{ comment.content }}</strong> 
-          </a>
-        </li>
+        {% endfor %}
+    </ul>
 
-    {% else %}
-
-      <p>No comments!</p>
-
-    {% endfor %}
 
 {% endblock %}
 

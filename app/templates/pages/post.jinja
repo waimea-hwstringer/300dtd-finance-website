@@ -19,7 +19,7 @@
 
         <header>
             <h1>{{post.title}}</h1>
-            <h4>by <a>{{ post.username }}</a>👤 - {{ post.date }}</h4>
+            <h4>by <a href="/user/{{ post.author }}">{{ post.username }}</a>👤 - {{ post.date }}</h4>
         </header>
 
         <p>{{ post.content }}</p>

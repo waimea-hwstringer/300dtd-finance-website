@@ -60,6 +60,7 @@ def home():
                 users.tier 
             FROM posts
             JOIN users ON posts.author = users.id
+            ORDER BY posts.date DESC
         """
         params=[]
         result = client.execute(sql, params)
@@ -247,7 +248,7 @@ def user(id):
 
         # Get all the user info from the DB
         sql = """
-            SELECT username, tier
+            SELECT id, username, tier
             FROM   users
             WHERE  id=?
         """
@@ -268,7 +269,9 @@ def user(id):
                 posts.content,
                 posts.video_id,
                 posts.min_tier,
-                users.id AS u_id
+                posts.date,
+                users.id AS u_id,
+                'post' AS type
             FROM posts
             
             JOIN users ON posts.author = users.id
@@ -283,12 +286,14 @@ def user(id):
 
         sql = """
             SELECT 
-                comments.id AS id,
-                NULL AS title,         -- comments don't have titles, videos etc
+                comments.id AS c_id,
+                comments.author,
+                comments.post,
+                comments.date,
                 comments.content,
+                NULL AS title,         -- comments don't have titles, videos etc
                 NULL AS video_id,
                 NULL AS min_tier,
-                comments.date,
                 'comment' AS type
             FROM comments
             WHERE comments.author=?
@@ -298,14 +303,14 @@ def user(id):
         comments = result.rows
 
         # Merge posts and comments into one timeline
-        activity = posts + comments
+        items = posts + comments
 
         # Sort by date (assuming date is a comparable type, e.g. ISO string or datetime)
-        activity.sort(key=lambda x: x["date"], reverse=True)  # newest first
+        items.sort(key=lambda x: x["date"], reverse=True)  # newest first
 
 
         # And show everything on the page
-        return render_template(f"pages/user.jinja", user=user, posts=posts, comments=comments)
+        return render_template(f"pages/user.jinja", user=user, items=items)
 
 
 

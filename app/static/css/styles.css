@@ -33,7 +33,7 @@
 #messages .message.success { color: var(--pico-color-green-500); }
 #messages .message.error   { color: var(--pico-color-red-500); }
 
-#comments {
+li {
     list-style-type: none;
 }
 
