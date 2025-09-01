@@ -313,6 +313,44 @@ def user(id):
         return render_template(f"pages/user.jinja", user=user, items=items)
 
 
+#-----------------------------------------------------------
+# Admin Dashboard
+#-----------------------------------------------------------
+@app.get("/admin")
+def admin_dashboard():
+    
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = "SELECT * FROM users"
+        params=[]
+        result = client.execute(sql, params)
+        users = result.rows
+
+        # Go back to the home page
+        return render_template("pages/admin-dashboard.jinja", users=users)
+    
+    
+#-----------------------------------------------------------
+# Admin Dashboard
+#-----------------------------------------------------------
+@app.get("/admin-verify-user/<int:id>")
+def admin_verify_user(id):
+    
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = """
+                UPDATE users 
+                SET    verified="1"
+                WHERE  id=?
+              """
+        params=[id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"User {id} Verified", "success")
+        return redirect("/admin")
+    
+
 
 #-----------------------------------------------------------
 # User registration form route

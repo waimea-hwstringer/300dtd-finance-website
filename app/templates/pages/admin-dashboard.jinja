@@ -1,0 +1,64 @@
+{#=====================================================
+  Admin Dashboard for verifying account creation
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Admin Dashboard
+
+{% endblock %}
+
+
+{% block content %}
+
+    <article>
+
+        <h1>New Accounts</h1>
+
+        {% for user in users if user.verified == 0 %}
+
+            <span>{{user.username}}</span>
+                
+            <a href="/admin-verify-user/{{user.id}}">✔</a>
+
+            <a>x</a>
+
+            <br>
+
+        {% else %}
+
+            <p>No users need verifying</p>
+
+        {% endfor %}
+
+    </article>
+
+    <article>
+
+        <h1>Verified Accounts</h1>
+
+        {% for user in users if user.verified == 1 %}
+
+            <details>
+                
+                <summary>{{user.username}} | {{user.tier}}</summary>
+                
+                <a href="/user/{{user.id}}">View Profile</a>
+
+                <a>Delete Account</a>
+            
+            </details>
+
+        {% else %}
+
+            <p>No users need verifying</p>
+
+        {% endfor %}
+
+    </article>
+
+{% endblock %}
+

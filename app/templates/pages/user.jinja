@@ -21,9 +21,17 @@
 
     <h1> 👤 {{ user.username }} </h1>
 
+    <p> Tier: {{ user.tier }}</p>
+
     {% if session.user_id == user.id %}
         
-        <p>hello</p>
+        <p>This is you</p>
+
+    {% endif %}
+
+    {% if user.tier == 0 %}
+
+        <a href="/admin"> [admin dashboard] </a>
 
     {% endif %}
 
