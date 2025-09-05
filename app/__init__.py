@@ -259,7 +259,6 @@ def user(id):
         else:
             return not_found_error()
         
-
         # Get all the user's posts from the DB
         sql = """
             SELECT 
@@ -331,7 +330,7 @@ def admin_dashboard():
     
     
 #-----------------------------------------------------------
-# Admin Dashboard
+# Route for an admin to verify a user
 #-----------------------------------------------------------
 @app.get("/admin-verify-user/<int:id>")
 def admin_verify_user(id):
@@ -348,6 +347,47 @@ def admin_verify_user(id):
 
         # Go back to the home page
         flash(f"User {id} Verified", "success")
+        return redirect("/admin")
+    
+
+#-----------------------------------------------------------
+# Route for an admin to delete a user
+#-----------------------------------------------------------
+@app.get("/admin-delete-user/<int:id>")
+def admin_delete_user(id):
+    
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = """
+                DELETE 
+                FROM users
+                WHERE  id=?
+              """
+        params=[id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"User {id} Deleted", "success")
+        return redirect("/admin")
+    
+#-----------------------------------------------------------
+# Route for an admin to promote another user to admin
+#-----------------------------------------------------------
+@app.get("/admin-promote-user/<int:id>")
+def admin_promote_user(id):
+    
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = """
+                UPDATE users 
+                SET    tier="0"
+                WHERE  id=?
+              """
+        params=[id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"User {id} Promoted", "success")
         return redirect("/admin")
     
 
@@ -437,7 +477,13 @@ def login_user():
                 session["user_id"]   = user["id"]
                 session["user_name"] = user["name"]
                 session["user_username"] = user["username"]
+                session["tier"] = user["tier"]
                 session["logged_in"] = True
+
+                if user["tier"] == 0:
+                    session["is_admin"] = True
+                else:
+                    session["is_admin"] = False
 
                 # And head back to the home page
                 flash("Login successful", "success")
@@ -457,6 +503,8 @@ def logout():
     session.pop("user_id", None)
     session.pop("user_name", None)
     session.pop("logged_in", None)
+    session.pop("is_admin", None)
+    session.pop("tier", None)
 
     # And head back to the home page
     flash("Logged out successfully", "success")

@@ -30,9 +30,17 @@
         <p>We have a team of experts that you can freely reach out to should you need any advice.</p>
     </ul>
 
-    <a href="/login" role="button">Log In</a>
+    {% if session.user_id %}
 
-    <a href="/register" role="button">Register</a>
+        <a href="/home" role="button">Jump in</a>
+
+    {% else %}
+
+        <a href="/login" role="button">Log In</a>
+
+        <a href="/register" role="button">Register</a>
+
+    {% endif %}
 
 {% endblock %}
 

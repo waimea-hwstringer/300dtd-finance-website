@@ -20,7 +20,9 @@
 
         {% for user in users if user.verified == 0 %}
 
-            <span>{{user.username}}</span>
+            <span><strong>{{user.username}}</strong></span>
+
+            <span> is applying for tier {% include "components/tier-icon.jinja" %} </span>
                 
             <a href="/admin-verify-user/{{user.id}}">✔</a>
 
@@ -48,7 +50,9 @@
                 
                 <a href="/user/{{user.id}}">View Profile</a>
 
-                <a>Delete Account</a>
+                <a href="/admin-delete-user/{{user.id}}">Delete Account</a>
+
+                <a href="/admin-promote-user/{{user.id}}">Make admin</a>
             
             </details>
 
