@@ -28,17 +28,26 @@
 
     {% if session.user_id == user.id %}
         
-        {% if session.tier == 1 %}
+        {% if session.tier == 1 %} {# free tier #}
 
-            <p>Apply for a higher tier! </p>
+            <p><strong>Get for a higher tier for more perks!</strong></p>
+            <ul>
+                <li><a href="/delete-post/" onclick="return confirm('Apply for tier 🥉Bronze for $1 a month?');" >Apply for 🥉Bronze</a></li>
+                <li><a>Apply for 🥈Silver</a></li>
+                <li><a>Apply for 🥇Gold</a></li>
+            </ul>
 
-        {% elif session.tier == 2 %}
+        {% elif session.tier == 2 %} {# bronze tier #}
 
-            <p>Apply for a higher tier! </p>
+            <p><strong>Get for a higher tier for more perks!</strong></p>
+            <ul>
+                <li><a>Apply for 🥈Silver</a></li>
+                <li><a>Apply for 🥇Gold</a></li>
+            </ul>
         
-        {% elif session.tier == 3%}
+        {% elif session.tier == 3%} {# silver tier #}
 
-            <p>Apply for a higher tier!</p>
+            <p>Apply for 🥇Gold to get all the perks!</p>
 
         {% endif %}
 
@@ -56,7 +65,23 @@
                 <li>
                     <strong><a href="/post/{{ item.p_id }}"> {{ item.title }} </a></strong>
                     <small>{{ item.date }}</small>
+                    
+
+                    {% if item.video_id %}
                     <br>
+                    <iframe 
+                        width="560" height="315" 
+                        src="https://www.youtube.com/embed/{{ item.video_id }}" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                    {% endif %}
+
+                    <br>
+
                     <span>{{ item.content }}</span>
                     {% if session.user_id == item.author %}
                         <br>

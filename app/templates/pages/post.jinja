@@ -39,9 +39,9 @@
         <footer>
 
             {# Only show delete link if logged in AND owner #}
-            {% if session.user_id and (post.author == session.user_id) %}
+            {% if session.user_id and (post.author == session.user_id) or session.is_admin == true %}
 
-                <a href="/delete-post/{{ post.p_id }}" onclick="return confirm('Really delete?');">Delete</a>
+                <a href="/delete-post/{{ post.p_id }}" onclick="return confirm('Really delete?');">Delete Post </a>
 
             {% endif %}
             
@@ -50,38 +50,57 @@
 
         <br>
 
-        <form action="/add-comment/{{ post.p_id }}" method="POST">
+        {% if session.tier > 1 or session.is_admin %}
 
-            <input
-                type="text"
-                name="content"
-                placeholder="Make a comment..."
-                required
-            >
+            <form action="/add-comment/{{ post.p_id }}" method="POST">
+
+                <input
+                    type="text"
+                    name="content"
+                    placeholder="Make a comment..."
+                    required
+                >
+
+                <button>Post Comment</button>
+            </form>
+
+        {% else %}
+
+            <p>Apply for a higher tier to post and view</p>
         
-            <button>Post Comment</button>
-        </form>
+        {% endif %}
 
     </article>
 
     <article>
-        {% for comment in comments %}
+        
+        {% if session.tier > 1 or session.is_admin %}
+            
+            {% for comment in comments %}
 
-            <li id="comments">
-                <span>👤 {{ comment.c_username }} - {{ comment.c_date }}</span>
-                <p>
-                    {{ comment.c_content }}
+                <li id="comments">
+                    <span><a href="/user/{{comment.c_author}}">👤 {{ comment.c_username }}</a> - {{ comment.c_date }}</span>
+                    <p>
+                        {{ comment.c_content }}
 
-                    {% if session.user_id and (comment.c_author == session.user_id)%}
-                        <a href="/delete-comment/{{ post.p_id }}/{{ comment.c_id }}">🗑</a></p> 
-                    {% endif %}
-            </li>
+                        {% if session.user_id and (comment.c_author == session.user_id) or session.is_admin %}
+
+                            <a href="/delete-comment/{{ post.p_id }}/{{ comment.c_id }}">🗑</a></p>
+
+                        {% endif %}
+                </li>
+
+            {% else %}
+
+                <p>No comments!</p>
+
+            {% endfor %}
 
         {% else %}
 
-            <p>No comments!</p>
+            <p>Apply for a higher tier to view comments!</p>
 
-        {% endfor %}
+        {% endif %}
     
     </article>
 

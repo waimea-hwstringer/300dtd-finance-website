@@ -46,7 +46,7 @@
 
             <details>
                 
-                <summary>{{user.username}} | {{user.tier}}</summary>
+                <summary>{{user.username}} {% include "components/tier-icon.jinja" %}</summary>
                 
                 <a href="/user/{{user.id}}">View Profile</a>
 

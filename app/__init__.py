@@ -70,7 +70,7 @@ def home():
         return render_template("pages/home.jinja", posts=posts)
 
 #-----------------------------------------------------------
-# Thing page route - Show details of a single thing
+# Post page route - Show details of a single post
 #-----------------------------------------------------------
 @app.get("/post/<int:id>")
 def show_one_post(id):
