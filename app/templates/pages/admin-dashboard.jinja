@@ -53,6 +53,22 @@
                 <a href="/admin-delete-user/{{user.id}}">Delete Account</a>
 
                 <a href="/admin-promote-user/{{user.id}}">Make admin</a>
+
+                <form action="/admin-change-tier-user">
+
+                    <label for="tier">Change tier: </label>
+
+                    <select id="tier">
+
+                        <option value="1">Basic</option>
+                        <option value="2">Bronze</option>
+                        <option value="3">Silver</option>
+                        <option value="4">Gold</option>
+                        <option value="0">Admin</option>
+
+                    </select>
+                    <input type="submit">
+                </form>
             
             </details>
 
