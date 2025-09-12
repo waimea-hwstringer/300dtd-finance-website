@@ -50,24 +50,24 @@
                 
                 <a href="/user/{{user.id}}">View Profile</a>
 
-                <a href="/admin-delete-user/{{user.id}}">Delete Account</a>
+                <a href="/admin-delete-user/{{user.id}}" onclick="return confirm('Are you sure you want to delete user {{user.id}}?');" >Delete Account</a>
 
-                <a href="/admin-promote-user/{{user.id}}">Make admin</a>
+                <a href="/admin-unverify-user/{{user.id}}">Unverify User</a>
 
-                <form action="/admin-change-tier-user">
+                <form action="/admin-change-tier-user/{{user.id}}" method="POST">
 
                     <label for="tier">Change tier: </label>
 
-                    <select id="tier">
-
-                        <option value="1">Basic</option>
-                        <option value="2">Bronze</option>
-                        <option value="3">Silver</option>
-                        <option value="4">Gold</option>
-                        <option value="0">Admin</option>
-
+                    <select name="tier">
+                        <option value="1">🆓Basic</option>
+                        <option value="2">🥉Bronze</option>
+                        <option value="3">🥈Silver</option>
+                        <option value="4">🥇Gold</option>
+                        <option value="0">👑Admin</option>
                     </select>
+                    
                     <input type="submit">
+
                 </form>
             
             </details>

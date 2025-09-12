@@ -27,30 +27,31 @@
     </h1>
 
     {% if session.user_id == user.id %}
-        
-        {% if session.tier == 1 %} {# free tier #}
 
-            <p><strong>Get for a higher tier for more perks!</strong></p>
-            <ul>
-                <li><a href="/delete-post/" onclick="return confirm('Apply for tier 🥉Bronze for $1 a month?');" >Apply for 🥉Bronze</a></li>
-                <li><a>Apply for 🥈Silver</a></li>
-                <li><a>Apply for 🥇Gold</a></li>
-            </ul>
+        <span>You currently have the tier <strong>{% include "components/tier-icon-name.jinja" %}</strong>. </span>
 
-        {% elif session.tier == 2 %} {# bronze tier #}
+        {% if session.tier < 4 and session.is_admin == false %}
 
-            <p><strong>Get for a higher tier for more perks!</strong></p>
-            <ul>
-                <li><a>Apply for 🥈Silver</a></li>
-                <li><a>Apply for 🥇Gold</a></li>
-            </ul>
-        
-        {% elif session.tier == 3%} {# silver tier #}
-
-            <p>Apply for 🥇Gold to get all the perks!</p>
+            <span>You can upgrade your tier to see more content.</span>
 
         {% endif %}
 
+        <form action="/change-tier-user" method="POST">
+
+            <label for="tier">Below you may apply for a different tier. Doing so will unverify you. </label>
+            <select name="tier">
+
+                <option value="4">🥇Gold</option>
+                <option value="3">🥈Silver</option>
+                <option value="2">🥉Bronze</option>
+                <option value="1">🆓Basic</option>
+                
+            </select>
+
+            <input type="submit">
+
+        </form>
+        
         <a href="/logout" role="button">Log out</a>
 
     {% endif %}

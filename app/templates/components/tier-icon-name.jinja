@@ -1,0 +1,11 @@
+{%if user.tier == 0 %}
+    👑Admin
+{% elif user.tier == 1 %}
+    🆓Basic
+{% elif user.tier == 2 %}
+    🥉Bronze
+{% elif user.tier == 3 %}
+    🥈Silver
+{% else %}
+    🥇Gold
+{% endif %}

@@ -310,6 +310,37 @@ def user(id):
 
         # And show everything on the page
         return render_template(f"pages/user.jinja", user=user, items=items)
+    
+
+#-----------------------------------------------------------
+# Route for a user to upgrade their tier
+#-----------------------------------------------------------
+@app.post("/change-tier-user")
+def upgrade_tier():
+
+    # Get the new tier from the form
+    tier = request.form.get("tier")
+
+    # Get the user from the session
+    user_id = session["user_id"]
+    
+    with connect_db() as client:
+        # Delete the thing from the DB o
+        sql = """
+                UPDATE users 
+                SET    tier=?,
+                       verified="0"
+                WHERE  id=?
+              """
+        params=[tier, user_id]
+        client.execute(sql, params)
+
+        session["tier"] = int(tier)
+
+        # Go back to the home page
+        flash(f"Changed to tier {tier}", "success")
+        return redirect(f"/user/{user_id}")
+    
 
 
 #-----------------------------------------------------------
@@ -336,7 +367,7 @@ def admin_dashboard():
 def admin_verify_user(id):
     
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Set verified to true
         sql = """
                 UPDATE users 
                 SET    verified="1"
@@ -347,6 +378,27 @@ def admin_verify_user(id):
 
         # Go back to the home page
         flash(f"User {id} Verified", "success")
+        return redirect("/admin")
+    
+
+#-----------------------------------------------------------
+# Route for an admin to unverify a user
+#-----------------------------------------------------------
+@app.get("/admin-unverify-user/<int:id>")
+def admin_unverify_user(id):
+    
+    with connect_db() as client:
+        # Set verified to false
+        sql = """
+                UPDATE users 
+                SET    verified="0"
+                WHERE  id=?
+              """
+        params=[id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"User {id} Unverified", "success")
         return redirect("/admin")
     
 
@@ -371,23 +423,26 @@ def admin_delete_user(id):
         return redirect("/admin")
     
 #-----------------------------------------------------------
-# Route for an admin to promote another user to admin
+# Route for an admin to change another users tier
 #-----------------------------------------------------------
-@app.get("/admin-promote-user/<int:id>")
-def admin_promote_user(id):
+@app.post("/admin-change-tier-user/<int:id>")
+def admin_change_tier_user(id):
+
+    # Get the data from the form
+    tier = request.form.get("tier")
     
     with connect_db() as client:
         # Delete the thing from the DB o
         sql = """
                 UPDATE users 
-                SET    tier="0"
+                SET    tier=?
                 WHERE  id=?
               """
-        params=[id]
+        params=[tier, id]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash(f"User {id} Promoted", "success")
+        flash(f"User {id} changed to tier {tier}", "success")
         return redirect("/admin")
     
 

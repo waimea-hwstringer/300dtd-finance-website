@@ -50,7 +50,7 @@
 
         <br>
 
-        {% if session.tier > 1 or session.is_admin %}
+        {% if session.tier > 2 or session.is_admin %}
 
             <form action="/add-comment/{{ post.p_id }}" method="POST">
 
@@ -66,7 +66,7 @@
 
         {% else %}
 
-            <p>Apply for a higher tier to post and view</p>
+            <p>Apply for a higher tier to post comments.</p>
         
         {% endif %}
 

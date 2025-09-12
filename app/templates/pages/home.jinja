@@ -18,9 +18,11 @@
 
 {% block content %}
 
+    {# add a second query to the home route in init py to find the logged in user's tier #}
+
     {% for post in posts %}
 
-        {% if session.tier >= post.min_tier or session.tier == 0 %}
+        {% if (session.tier >= post.min_tier and user.verified == 1) or (session.tier == 0 and user.verified == 1 ) %}
             
             <li>
                 <a href="/post/{{ post.p_id }}">
@@ -47,7 +49,7 @@
 
             </li>
         
-        {% else %}
+        {% else%}
 
             <p> you need a higher tier to view this post. </p>
         
@@ -62,7 +64,7 @@
 
     <br>
 
-    {% if session.tier == 0 or session.tier == 4 %}
+    {% if session.tier == 0 %}
     
         <a href="/new-post" role="button">Make a post</a>
 
