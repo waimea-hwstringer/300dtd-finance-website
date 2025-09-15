@@ -15,10 +15,9 @@
 
 {% endblock %}
 
+{# registration page, free tiers shouldn't need to be verified #}
 
 {% block content %}
-
-    {# add a second query to the home route in init py to find the logged in user's tier #}
 
     {% for post in posts %}
 
@@ -51,7 +50,15 @@
         
         {% else%}
 
-            <p> you need a higher tier to view this post. </p>
+            <li>
+            
+                <a href="/post/{{ post.p_id }}">
+                  <strong>{{ post.title }}</strong> by {{ post.username }}
+                </a>
+
+                <p>🔒 <strong>Unlock</strong> this post by getting a <strong>higher tier!</strong> </p>
+            
+            </li>
         
         {% endif %}
         

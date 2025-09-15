@@ -22,11 +22,9 @@
 
             <span><strong>{{user.username}}</strong></span>
 
-            <span> is applying for tier {% include "components/tier-icon.jinja" %} </span>
+            <span> has applied for tier {% include "components/tier-icon.jinja" %} </span>
                 
             <a href="/admin-verify-user/{{user.id}}">✔</a>
-
-            <a>x</a>
 
             <br>
 
@@ -47,6 +45,10 @@
             <details>
                 
                 <summary>{{user.username}} {% include "components/tier-icon.jinja" %}</summary>
+
+                <p>First name: {{user.name}}</p>
+
+                <p>Email: {{user.email}}</p>
                 
                 <a href="/user/{{user.id}}">View Profile</a>
 

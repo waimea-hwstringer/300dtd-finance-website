@@ -46,7 +46,7 @@ def index():
 
 def home():
     with connect_db() as client:
-        # Get all the things from the DB
+        # Get all the posts from the DB
         sql = """
             SELECT 
                 posts.id AS p_id,
@@ -56,8 +56,7 @@ def home():
                 posts.video_id,
                 posts.min_tier,
                 users.id AS u_id,
-                users.username,
-                users.tier 
+                users.username
             FROM posts
             JOIN users ON posts.author = users.id
             ORDER BY posts.date DESC
@@ -66,8 +65,23 @@ def home():
         result = client.execute(sql, params)
         posts = result.rows
 
+        id = session["user_id"]
+
+        # Get all the user info from the DB
+        sql = """
+            SELECT 
+                tier,
+                verified
+            FROM users
+            WHERE id=?
+            
+        """
+        params=[id]
+        result = client.execute(sql, params)
+        user = result.rows[0]
+
         # And show them on the page
-        return render_template("pages/home.jinja", posts=posts)
+        return render_template("pages/home.jinja", posts=posts, user=user)
 
 #-----------------------------------------------------------
 # Post page route - Show details of a single post
@@ -225,13 +239,11 @@ def add_a_post():
 @app.get("/delete-post/<int:id>")
 @login_required
 def delete_a_post(id):
-    # Get the user id from the session
-    author = session["user_id"]
 
     with connect_db() as client:
         # Delete the thing from the DB o
-        sql = "DELETE FROM posts WHERE id=? AND author=?"
-        params = [id, author]
+        sql = "DELETE FROM posts WHERE id=?"
+        params = [id]
         client.execute(sql, params)
 
         # Go back to the home page
@@ -248,7 +260,7 @@ def user(id):
 
         # Get all the user info from the DB
         sql = """
-            SELECT id, username, tier
+            SELECT id, username, tier, verified
             FROM   users
             WHERE  id=?
         """
@@ -475,6 +487,11 @@ def add_user():
     password = request.form.get("password")
     tier = request.form.get("tier")
 
+    if tier == 1:
+        verified = 1
+    else:
+        verified = 0
+
     with connect_db() as client:
         # Attempt to find an existing record for that user
         sql = "SELECT * FROM users WHERE username = ?"
@@ -492,8 +509,8 @@ def add_user():
             hash = generate_password_hash(password)
 
             # Add the user to the users table
-            sql = "INSERT INTO users (name, email, username, password_hash, tier) VALUES (?, ?, ?, ?, ?)"
-            params = [name, email, username, hash, tier]
+            sql = "INSERT INTO users (name, email, username, password_hash, tier, verified) VALUES (?, ?, ?, ?, ?, ?)"
+            params = [name, email, username, hash, tier, verified]
             client.execute(sql, params)
 
             # And let them know it was successful and they can login

@@ -28,6 +28,16 @@
 
     {% if session.user_id == user.id %}
 
+        {% if user.verified == 1 %}
+
+            <span>You are <strong>verified</strong>.</span>
+
+        {% else %}
+
+            <span>You are <strong>not verified</strong>.</span>
+
+        {% endif %}
+
         <span>You currently have the tier <strong>{% include "components/tier-icon-name.jinja" %}</strong>. </span>
 
         {% if session.tier < 4 and session.is_admin == false %}
