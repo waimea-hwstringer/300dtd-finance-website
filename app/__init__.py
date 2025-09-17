@@ -14,7 +14,7 @@ from app.helpers.session import init_session
 from app.helpers.db      import connect_db
 from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
-from app.helpers.auth    import login_required
+from app.helpers.auth    import login_required, admin_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
 
 # GIT BASH
@@ -359,11 +359,12 @@ def upgrade_tier():
 # Admin Dashboard
 #-----------------------------------------------------------
 @app.get("/admin")
+@admin_required
 def admin_dashboard():
     
     with connect_db() as client:
         # Delete the thing from the DB o
-        sql = "SELECT * FROM users"
+        sql = "SELECT * FROM users ORDER BY tier DESC"
         params=[]
         result = client.execute(sql, params)
         users = result.rows
@@ -376,6 +377,7 @@ def admin_dashboard():
 # Route for an admin to verify a user
 #-----------------------------------------------------------
 @app.get("/admin-verify-user/<int:id>")
+@admin_required
 def admin_verify_user(id):
     
     with connect_db() as client:
@@ -397,6 +399,7 @@ def admin_verify_user(id):
 # Route for an admin to unverify a user
 #-----------------------------------------------------------
 @app.get("/admin-unverify-user/<int:id>")
+@admin_required
 def admin_unverify_user(id):
     
     with connect_db() as client:
@@ -418,6 +421,7 @@ def admin_unverify_user(id):
 # Route for an admin to delete a user
 #-----------------------------------------------------------
 @app.get("/admin-delete-user/<int:id>")
+@admin_required
 def admin_delete_user(id):
     
     with connect_db() as client:
@@ -438,6 +442,7 @@ def admin_delete_user(id):
 # Route for an admin to change another users tier
 #-----------------------------------------------------------
 @app.post("/admin-change-tier-user/<int:id>")
+@admin_required
 def admin_change_tier_user(id):
 
     # Get the data from the form

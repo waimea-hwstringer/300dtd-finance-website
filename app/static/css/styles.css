@@ -37,3 +37,7 @@ li {
     list-style-type: none;
 }
 
+details[open] > summary {
+    font-weight: bold;
+  }
+  
