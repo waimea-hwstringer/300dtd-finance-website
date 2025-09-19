@@ -1,4 +1,4 @@
-# PROJECT NAME HERE
+# Dollar Scholar
 
 by Harry Stringer
 
@@ -9,7 +9,7 @@ by Harry Stringer
 
 Replace this text with your project description and list the key features below
 
-Financial advice project.
+Dollar Scholar will be a financial advice space where users can get useful information about personal finance.
 
 - Feature 1 here
 - Feature 2 here

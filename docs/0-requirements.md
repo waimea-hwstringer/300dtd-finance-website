@@ -30,14 +30,6 @@ Functionality is essentially something that works and is useful. Information or 
 
 ### Relevance to the System
 
-# #######
-## ######
-### #####
-#### ####
-##### ###
-###### ##
-####### #
-
 My website must display advice that is accurate. As the website is for financial advice, we do not want to provide the users with false advice as this could seriously affect their living situation. For example, we don't want to let people with free accounts make posts as these could be malicious or misleading. Therefore we must only allow people to post if they have been permitted.
 
 ### Impact / Considerations
