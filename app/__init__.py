@@ -16,6 +16,7 @@ from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
 from app.helpers.auth    import login_required, admin_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
+import base64
 
 # GIT BASH
 # source venv/Scripts/activate
@@ -43,7 +44,7 @@ def index():
 # Home page route (posts feed)
 #-----------------------------------------------------------
 @app.get("/home/")
-
+@login_required
 def home():
     with connect_db() as client:
         # Get all the posts from the DB
@@ -87,6 +88,7 @@ def home():
 # Post page route - Show details of a single post
 #-----------------------------------------------------------
 @app.get("/post/<int:id>")
+@login_required
 def show_one_post(id):
     with connect_db() as client:
         # Get the thing details from the DB, including the owner info
@@ -99,6 +101,8 @@ def show_one_post(id):
                 posts.video_id,
                 posts.min_tier,
                 posts.date,
+                posts.image_data,
+                posts.image_type,
                 users.id AS u_id,
                 users.username
             FROM posts
@@ -109,13 +113,20 @@ def show_one_post(id):
         result = client.execute(sql, params)
 
         # Did we get a result?
-        if result.rows:
-            # yes, so show it on the page
-            post = result.rows[0]
-
-        else:
+        if not result.rows:
             # No, so show error
             return not_found_error()
+            
+        # yes, so show it on the page
+        
+
+        post = dict(result.rows[0])  # Convert Row to dict
+
+        # Convert image to Base64 if it exists
+        if post["image_data"]:
+            post["image_base64"] = base64.b64encode(post["image_data"]).decode("utf-8")
+        else:
+            post["image_base64"] = None
         
         # Get the thing details from the DB, including the owner info
         sql = """
@@ -192,6 +203,7 @@ def delete_a_comment(p_id, c_id):
 # Make a post form route
 #-----------------------------------------------------------
 @app.get("/new-post/")
+@admin_required
 def make_a_post_form():
     return render_template("pages/post-new.jinja")
 
@@ -200,7 +212,7 @@ def make_a_post_form():
 # - Restricted to logged in users
 #-----------------------------------------------------------
 @app.post("/add-post")
-@login_required
+@admin_required
 def add_a_post():
     # Get the data from the form
     title   = request.form.get("title")
@@ -212,20 +224,29 @@ def add_a_post():
     if video:
         vSplit = video.split("?v=")
         vSplit = vSplit[1].split("&")
-        video = vSplit[0]
+        video  = vSplit[0]
+
+    # Get the uploaded image
+    file = request.files.get("image")
+    image_data = None
+    image_type = None
+
+    if file:
+        image_data = file.read()
+        image_type = file.mimetype  # e.g., 'image/png'
 
     # Sanitise the text inputs
-    title = html.escape(title)
+    title   = html.escape(title)
     content = html.escape(content)
-    video = html.escape(video)
+    video   = html.escape(video)
 
     # Get the user information from the session
     user_id = session["user_id"]
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO posts (author, title, content, video_id, min_tier) VALUES (?, ?, ?, ?, ?)"
-        params = [user_id, title, content, video, tier]
+        sql = "INSERT INTO posts (author, title, content, video_id, min_tier, image_data, image_type) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        params = [user_id, title, content, video, tier,image_data, image_type]
         client.execute(sql, params)
 
         # Go back to the home page
@@ -255,6 +276,7 @@ def delete_a_post(id):
 # User's profile page
 #-----------------------------------------------------------
 @app.get("/user/<int:id>")
+@login_required
 def user(id):
     with connect_db() as client:
 
@@ -328,6 +350,7 @@ def user(id):
 # Route for a user to upgrade their tier
 #-----------------------------------------------------------
 @app.post("/change-tier-user")
+@login_required
 def upgrade_tier():
 
     # Get the new tier from the form

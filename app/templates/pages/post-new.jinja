@@ -22,7 +22,7 @@
             
         </header>
 
-        <form action="/add-post" method="POST">
+        <form action="/add-post" method="POST" enctype="multipart/form-data">
 
             <input
                 type="text"
@@ -48,7 +48,7 @@
             <input
                 type="file"
                 name="image"
-                placeholder="Image File..."
+                accept="image/*"
             >
 
             <p>Minimum account that can still see this post</p>
