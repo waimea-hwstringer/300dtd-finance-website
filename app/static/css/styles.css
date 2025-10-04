@@ -39,5 +39,13 @@ li {
 
 details[open] > summary {
     font-weight: bold;
-  }
+}
+
+.multiline-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;        /* Number of lines before cutting off */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   

@@ -1,8 +1,9 @@
 #===========================================================
-# YOUR PROJECT TITLE HERE
+# DOLLAR SCHOLAR
 # Harry Stringer
 #-----------------------------------------------------------
-# BRIEF DESCRIPTION OF YOUR PROJECT HERE
+# This website provides a quick way for people to access 
+# reliable financial advice.
 #===========================================================
 
 
@@ -15,7 +16,7 @@ from app.helpers.db      import connect_db
 from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
 from app.helpers.auth    import login_required, admin_required
-from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
+from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now, _utc_timestamp_to_local
 import base64
 
 # GIT BASH
@@ -118,15 +119,16 @@ def show_one_post(id):
             return not_found_error()
             
         # yes, so show it on the page
-        
+        post = result.rows[0]
 
-        post = dict(result.rows[0])  # Convert Row to dict
 
+        """
         # Convert image to Base64 if it exists
         if post["image_data"]:
             post["image_base64"] = base64.b64encode(post["image_data"]).decode("utf-8")
         else:
             post["image_base64"] = None
+        """
         
         # Get the thing details from the DB, including the owner info
         sql = """

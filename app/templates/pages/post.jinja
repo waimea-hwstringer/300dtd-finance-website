@@ -36,9 +36,13 @@
             </iframe>
         {% endif %}
 
+        {# this portion loads images.
+
         {% if post.image_base64 %}
             <img src="data:{{ post.image_type }};base64,{{ post.image_base64 }}" alt="Post image">
         {% endif %}
+
+        #} 
 
 
         <footer>
