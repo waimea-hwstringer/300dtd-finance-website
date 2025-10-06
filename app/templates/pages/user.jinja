@@ -75,7 +75,7 @@
             {% if item.type == "post" %}
                 <li>
                     <strong><a href="/post/{{ item.p_id }}"> {{ item.title }} </a></strong>
-                    <small>{{ item.date }}</small>
+                    <small>{{ item.date | localtimestamp }}</small>
                     
 
                     {% if item.video_id %}
@@ -93,7 +93,8 @@
 
                     <br>
 
-                    <span>{{ item.content }}</span>
+                    <span class="multiline-ellipsis" >{{ item.content }}</span>
+
                     {% if session.user_id == item.author %}
                         <br>
                         <span><a href="/delete-post/{{ item.p_id }}">delete</a></span>

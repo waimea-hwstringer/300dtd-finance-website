@@ -17,6 +17,7 @@ from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
 from app.helpers.auth    import login_required, admin_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now, _utc_timestamp_to_local
+from app.helpers.images  import image_file
 import base64
 
 # GIT BASH
@@ -84,6 +85,20 @@ def home():
 
         # And show them on the page
         return render_template("pages/home.jinja", posts=posts, user=user)
+    
+
+#-----------------------------------------------------------
+# Route for serving an image from DB for a given id
+#-----------------------------------------------------------
+@app.route('/image/<int:id>')
+def get_image(id):
+    with connect_db() as client:
+        sql = "SELECT image_data, image_type FROM posts WHERE id = ?"
+        params = [id]
+        result = client.execute(sql, params)
+
+        return image_file(result, "image_data", "image_type")
+
 
 #-----------------------------------------------------------
 # Post page route - Show details of a single post
@@ -92,7 +107,7 @@ def home():
 @login_required
 def show_one_post(id):
     with connect_db() as client:
-        # Get the thing details from the DB, including the owner info
+        # Get the post details from the DB, including the owner info
         sql = """
             SELECT 
                 posts.id AS p_id,
@@ -102,8 +117,6 @@ def show_one_post(id):
                 posts.video_id,
                 posts.min_tier,
                 posts.date,
-                posts.image_data,
-                posts.image_type,
                 users.id AS u_id,
                 users.username
             FROM posts
@@ -120,17 +133,8 @@ def show_one_post(id):
             
         # yes, so show it on the page
         post = result.rows[0]
-
-
-        """
-        # Convert image to Base64 if it exists
-        if post["image_data"]:
-            post["image_base64"] = base64.b64encode(post["image_data"]).decode("utf-8")
-        else:
-            post["image_base64"] = None
-        """
-        
-        # Get the thing details from the DB, including the owner info
+   
+        # Get the comment details from the DB, including the owner info
         sql = """
             SELECT 
                 comments.id      AS c_id,
@@ -148,6 +152,7 @@ def show_one_post(id):
         comments = result.rows
         
         return render_template("pages/post.jinja", post=post, comments=comments)
+    
 
 #-----------------------------------------------------------
 # Route for making a post
@@ -168,7 +173,7 @@ def add_a_comment(id):
     post = id
 
     with connect_db() as client:
-        # Add the thing to the DB
+        # Add the comment to the DB
         sql = "INSERT INTO comments (author, post, content) VALUES (?, ?, ?)"
         params = [user_id, post, content]
         client.execute(sql, params)
@@ -246,7 +251,7 @@ def add_a_post():
     user_id = session["user_id"]
 
     with connect_db() as client:
-        # Add the thing to the DB
+        # Add the post to the DB
         sql = "INSERT INTO posts (author, title, content, video_id, min_tier, image_data, image_type) VALUES (?, ?, ?, ?, ?, ?, ?)"
         params = [user_id, title, content, video, tier,image_data, image_type]
         client.execute(sql, params)
@@ -264,7 +269,7 @@ def add_a_post():
 def delete_a_post(id):
 
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Delete the post from the DB 
         sql = "DELETE FROM posts WHERE id=?"
         params = [id]
         client.execute(sql, params)
@@ -362,7 +367,7 @@ def upgrade_tier():
     user_id = session["user_id"]
     
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Change the user's tier to the new tier (as a non-admin)
         sql = """
                 UPDATE users 
                 SET    tier=?,
@@ -388,7 +393,7 @@ def upgrade_tier():
 def admin_dashboard():
     
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Get all users
         sql = "SELECT * FROM users ORDER BY tier DESC"
         params=[]
         result = client.execute(sql, params)
@@ -450,7 +455,7 @@ def admin_unverify_user(id):
 def admin_delete_user(id):
     
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Delete the user from the DB 
         sql = """
                 DELETE 
                 FROM users
@@ -474,7 +479,7 @@ def admin_change_tier_user(id):
     tier = request.form.get("tier")
     
     with connect_db() as client:
-        # Delete the thing from the DB o
+        # Change the user tier from the DB (as an admin)
         sql = """
                 UPDATE users 
                 SET    tier=?

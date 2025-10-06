@@ -42,6 +42,12 @@
                     allowfullscreen>
                 </iframe>
 
+                {% else %}
+
+                    <br>
+
+                    <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
+
                 {% endif %}
 
                 <p class="multiline-ellipsis"> {{ post.content }}</p>

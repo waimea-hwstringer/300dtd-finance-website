@@ -1,4 +1,4 @@
-# PROJECT NAME HERE
+# Dollar Scholar
 
 by Harry Stringer
 

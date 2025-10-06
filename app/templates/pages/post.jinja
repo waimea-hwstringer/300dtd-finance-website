@@ -19,7 +19,7 @@
 
         <header>
             <h1>{{post.title}}</h1>
-            <h4>by <a href="/user/{{ post.author }}">👤{{ post.username }}</a> - {{ post.date }}</h4>
+            <h4>by <a href="/user/{{ post.author }}">👤{{ post.username }}</a> - {{ post.date | localtimestamp }}</h4>
         </header>
 
         <p>{{ post.content }}</p>
@@ -36,14 +36,7 @@
             </iframe>
         {% endif %}
 
-        {# this portion loads images.
-
-        {% if post.image_base64 %}
-            <img src="data:{{ post.image_type }};base64,{{ post.image_base64 }}" alt="Post image">
-        {% endif %}
-
-        #} 
-
+        <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
 
         <footer>
 

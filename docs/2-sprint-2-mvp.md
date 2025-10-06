@@ -10,10 +10,11 @@ Develop a bare-bones, working web application that provides the key functionalit
 
 ## Implemented Database Schema
 
-Replace this text with notes regarding the DB schema.
+This schematic shows the final layout of the database that was used in my project.
 
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
+![SCREENSHOT OF DB SCHEMA](screenshots/db-final.png)
 
+The date is automatically generated with a timestamp in UTC. The video_id is the identifier of a YouTube link.
 
 ---
 
