@@ -1,0 +1,11 @@
+{%if post.min_tier == 0 %}
+    👑Admin
+{% elif post.min_tier == 1 %}
+    🆓Basic
+{% elif post.min_tier == 2 %}
+    🥉Bronze
+{% elif post.min_tier == 3 %}
+    🥈Silver
+{% else %}
+    🥇Gold
+{% endif %}

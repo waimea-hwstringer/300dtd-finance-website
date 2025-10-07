@@ -21,7 +21,7 @@
 
     {% for post in posts %}
 
-        {% if (session.tier >= post.min_tier and user.verified == 1) or (session.tier == 0 and user.verified == 1 ) %}
+        {% if (session.tier >= post.min_tier and user.verified == 1) or (session.is_admin ) or (user.verified == 0 and post.min_tier == 1) %}
             
             <li>
                 <a href="/post/{{ post.p_id }}">
@@ -62,7 +62,7 @@
                   <strong>{{ post.title }}</strong> by {{ post.username }}
                 </a>
 
-                <p>🔒 <strong>Unlock</strong> this post by getting a <strong>higher tier!</strong> </p>
+                <p>🔒 <strong>Unlock</strong> this post by getting a <strong>higher tier!</strong> It requires a minimum tier of {% include "components/tier-icon-name-(for_post).jinja" %} and you must be <strong>verified</strong>.</p>
             
             </li>
         
