@@ -48,29 +48,44 @@ This shows how a user can create an account from the landing page, and then log 
 
 We can see that account creation works as intended. The user applies for a bronze tier, which should allow them to see free posts and bronze posts. However, their account has not yet been verified so they should not be able to see bronze posts. However, they should be able to see the free posts. They can't in this instance - it's a bug.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+There was an issue with the logic regarding which posts unverified users can see. By slightly tweaking the conditions, we can see that now unverified accounts are able to see free posts.
+
+![LOGGING IN WITH NO BUGS ON HOME SCREEN](screenshots/acc-creation-fix.gif)
 
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing Post Creation
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Our user will try to create a post without being an admin account. There shouldn't be a button for him to click on to create a post, and he shouldn't be able to access the page by entering the url.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![ONLY ADMIN IS ABLE TO ENTER POST CREATION PAGE](screenshots/post-creation.gif)
 
-### Changes / Improvements
+When creating a post, the admin can add all different features. The post is then created and can be viewed.
 
-Replace this text with notes any improvements you made as a result of the testing.
+![POST CREATED SUCCESSFULLY](screenshots/post-creation2.gif)
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
+This all works as intended.
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing Post Visibility
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Accounts that are unverified or with a low tier cannot view all posts. 
+
+A basic or bronze tier user cannot see a silver tier post but a silver, gold or admin can.
+
+The website says that the post is locked for our bronze tier user as it is a gold tier post, however we can still view the post. This is a bug.
+
+![LOCKED POST NOT WORKING](screenshots/post-viewing.gif)
+
+By changing the link to redirect to the home page on locked posts, the lower tier users are not able to view the posts.
+
+![LOCKED POST CANNOT BE ACCESSED](screenshots/post-viewing-fix.gif)
+
+A gold tier user can see the post.
+
+![POST CAN BE VIEWED](screenshots/post-viewing-fix2.gif)
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
 
