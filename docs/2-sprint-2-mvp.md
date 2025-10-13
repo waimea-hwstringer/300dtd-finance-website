@@ -87,28 +87,46 @@ A gold tier user can see the post.
 
 ![POST CAN BE VIEWED](screenshots/post-viewing-fix2.gif)
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+After fixing this bug, the site works as intended. Only tiers at or higher than the level of the post can open it.
 
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing Comments
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Different tiers allow for different abilities regarding comments.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+- Basic tiers can't see or post any comments
+- Bronze tier can see comments but can't post comments
+- Gold and Silver can see and post comments, and delete their own comments
+- Admins can see and post comments, and delete any comment
 
-### Changes / Improvements
+### Basic account
 
-Replace this text with notes any improvements you made as a result of the testing.
+![BASIC ACCOUNT CAN'T SEE OR POST COMMENTS](screenshots/comment-basic.gif)
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+The basic account can't see any comments, no post comments
+
+### Bronze account
+
+![BRONZE ACCOUNT CAN ONLY SEE COMMENTS](screenshots/comment-bronze.gif)
+
+The bronze account can see comments, but not post their own
+
+### Silver & Gold accounts
+
+![SILVER & GOLD ACCOUNTS CAN SEE AND POST COMMENTS](screenshots/comment-silver.gif)
+
+The bronze account can see comments, but not post their own
+
+### Admin account
+
+![ADMIN ACCOUNT CAN'T DELETE OTHERS COMMENTS - BUGGED](screenshots/comment-admin.gif)
+
+The admin should be able to delete comments that they didn't author. The delete popup appears, but pressing it doesn't actually delete the comment. This is because the website checks that the person deleting the comment is the author as a safety measure. Changing this resolved the issue.
+
+![ADMIN ACCOUNT CAN DELETE OTHERS COMMENTS](screenshots/comment-admin-fix.gif)
+
 
 
 ---

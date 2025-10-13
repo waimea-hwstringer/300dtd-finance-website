@@ -196,8 +196,13 @@ def delete_a_comment(p_id, c_id):
 
     with connect_db() as client:
         # Delete the comment from the DB 
-        sql = "DELETE FROM comments WHERE id=? AND author=?"
-        params = [c_id, author]
+        if session["is_admin"]:
+            sql = "DELETE FROM comments WHERE id=? AND author=?"
+            params = [c_id, author]
+        else:
+            sql = "DELETE FROM comments WHERE id=? AND author=?"
+            params = [c_id, author]
+
         client.execute(sql, params)
 
         # Go back to the post that the comment used to be on
