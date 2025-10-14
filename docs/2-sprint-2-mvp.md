@@ -127,21 +127,24 @@ The admin should be able to delete comments that they didn't author. The delete 
 
 ![ADMIN ACCOUNT CAN DELETE OTHERS COMMENTS](screenshots/comment-admin-fix.gif)
 
+---
+
+## Testing Admin Account Verification
+
+Here a new user creates an account. When the account has been created, it will appear at the top of the admin dashboard, requiring verification. Once the user has paid, the admin will verify their account and they will have access to the perks that their tier supplies.
+
+![ACCOUNT CREATED, APPEARS ON ADMIN DASH](screenshots/verification1.gif)
+
+We can see that the account has not yet been verified. The admin then verifies the account, and they get access to their perks.
+
+![ACCOUNT IS UNVERIFIED AND CANNOT ACCESS PERKS. ACCOUNT GETS VERIFIED, AND THEN THEY CAN](screenshots/verification2.gif)
+
+This all works as intended.
 
 
 ---
 
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+## Testing Tier Changes
 
 
 ---
