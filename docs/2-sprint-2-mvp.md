@@ -146,10 +146,26 @@ This all works as intended.
 
 ## Testing Tier Changes
 
+Once a user has made their account, they are able to change their tier. doing so will unverify them.
+
+Admins can also change a user's tier in the admin dashboard.
+
+Here a gold tier user applies for bronze tier. When they have their gold tier, they can see all the posts. When they apply for silver, it changes their tier immediately but unverifies them. They will then need to be re-verified by an admin.
+
+![GOLD TIER APPLIES FOR BRONZE](screenshots/tier-change1.gif)
+
+Here a user for some reason a user must have their tier changed. An admin can do this from the admin dashboard without a user applying for a different tier. The user will not have to be re-verified as this was done by an admin.
+
+![ADMIN CHANGES A USER'S TIER](screenshots/tier-change2.gif)
+
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+This sprint has gone smoothly with the mvp now finished. All of the functionality of the site works. Next I will need to style the site and make sure that it looks good.
+
+I showed the mvp to my client and he said
+
+> "That all seems to work how i wanted it. I'm looking forward to seeing it after it looks good!"
 
