@@ -17,34 +17,30 @@
 
 {% block content %}
 
-    <section id="landing">
+    <h1>FINANCE</h1>
 
-        <h1>Dollar Scholar</h1>
-    
-        <p>Courses by experts, tailored for everyone. Learn actually useful information and save your money.</p>
-    
-        <ul>
-            <li>Easy to understand</li>
-            <p>Our information is designed to be used by everyone. Get easily digestible knowledge quickly.</p>
-            <li>Useful Information</li>
-            <p>We pride ourselves in having info that is actually helpful. No fluff or time-wasters.</p>
-            <li>Talk to experts</li>
-            <p>We have a team of experts that you can freely reach out to should you need any advice.</p>
-        </ul>
-    
-        {% if session.user_id %}
-    
-            <a href="/home" role="button">Jump in</a>
-    
-        {% else %}
-    
-            <a href="/login" role="button">Log In</a>
-    
-            <a href="/register" role="button">Register</a>
-    
-        {% endif %}
-    
-        </section>
+    <p>Courses by experts, tailored for everyone. Learn actually useful information and save your money.</p>
+
+    <ul>
+        <li>Easy to understand</li>
+        <p>Our information is designed to be used by everyone. Get easily digestible knowledge quickly.</p>
+        <li>Useful Information</li>
+        <p>We pride ourselves in having info that is actually helpful. No fluff or time-wasters.</p>
+        <li>Talk to experts</li>
+        <p>We have a team of experts that you can freely reach out to should you need any advice.</p>
+    </ul>
+
+    {% if session.user_id %}
+
+        <a href="/home" role="button">Jump in</a>
+
+    {% else %}
+
+        <a href="/login" role="button">Log In</a>
+
+        <a href="/register" role="button">Register</a>
+
+    {% endif %}
 
 {% endblock %}
 
