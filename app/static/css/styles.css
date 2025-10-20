@@ -2,19 +2,61 @@
   User style sheet - Building upon PicoCSS
 =====================================================*/
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap');
 
-/* ABOUT PAGE -------------------------------------------- */
+html {
+    font-family: inter;
+}
 
-#tech-stack {
+/* COLOR VARIABLES */
+:root {
+    --primary: #5CA58B; 
+    --secondary: #7D8FB7; 
+    --accent: #A1BBCB; 
+    --text: #0C1613;
+}
+
+
+nav {
+    background-color: var(--accent);
+    margin: -1rem;
+    padding: 1rem;
+}
+
+nav li a {
+    color: var(--text);
+    background-color: var(--accent);
+    padding: 0.2rem;
+}
+
+nav a[role=button] {
+    color: #0C1613;
+    background-color: var(--secondary);
+    border-radius: 10rem;
+    border: 0;
+    padding: 0.6rem;
+}
+
+#navIcon {
+    width: 2.8rem;
+    background-color: var(--primary);
+    padding: 0.4rem;
+    border-radius: 100%;
+}
+
+/* LANDING PAGE -------------------------------------------- */
+
+#landing h1 {
+    background-color: var(--secondary);
     display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+    padding: 3rem;
+    justify-content: center;
+
 }
 
-#tech-stack article {
-    flex: 1;
+#landing li {
+    background-color: var(--primary);
 }
-
 
 /* MESSAGES -------------------------------------------- */
 

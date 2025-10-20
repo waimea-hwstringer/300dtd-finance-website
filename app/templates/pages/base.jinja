@@ -34,14 +34,14 @@
     <header>
         <nav>
             <ul>
-                <li><strong><a href="/">Dollar Scholar</a></strong></li>
+                <li><strong><a href="/"><img src="/static/images/icon.png" id="navIcon"></a></strong></li>
             </ul>
 
             <ul>
 
                 {% if session.is_admin %}
 
-                    <li><a href="/admin"> Admin Dashboard</a></li>
+                    <li><a href="/admin" role="button"> Admin Dashboard</a></li>
 
                 {% endif%}
 
@@ -49,18 +49,18 @@
 
                     <li><a href="/user/{{session.user_id}}"> 👤 {{ session.user_username }} </a></li>
 
-                    <li><a href="/home">Home</a></li>
+                    <li><a href="/home" role="button">Home</a></li>
 
                 {% endif %}
 
                 {% if session.user_id %}
 
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/logout" role="button">Logout</a></li>
 
                 {% else %}
 
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login" role="button">Login</a></li>
+                    <li><a href="/register" role="button">Register</a></li>
 
                 {% endif %}
 
