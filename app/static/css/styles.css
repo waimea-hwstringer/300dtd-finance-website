@@ -4,8 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap');
 
-html {
-    font-family: inter;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: inter;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 /* COLOR VARIABLES */
@@ -44,6 +52,18 @@ nav a[role=button] {
     border-radius: 100%;
 }
 
+main {
+    flex: 1;
+}
+
+footer {
+    display: flex;
+    background-color: var(--accent);
+    margin: -1rem;
+    padding: 3rem;
+    justify-content: center;
+}
+
 /* LANDING PAGE -------------------------------------------- */
 
 #landing h1 {
@@ -56,7 +76,33 @@ nav a[role=button] {
 
 #landing li {
     background-color: var(--primary);
+    list-style-type: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    margin-left: none;
 }
+
+#landing ul {
+    padding-left: 0;
+}
+
+#landing a[role=button] {
+    width: 100%;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 0;
+    padding: 2rem;
+}
+
+#landingButtons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* LOG IN PAGE -------------------------------------------- */
 
 /* MESSAGES -------------------------------------------- */
 
