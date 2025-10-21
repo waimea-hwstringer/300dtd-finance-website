@@ -31,12 +31,12 @@
                 required
             >
 
-            <input
+            <textarea
                 type="text"
                 name="content"
                 placeholder="Content..."
                 required
-            >
+            ></textarea>
 
             <input
                 type="text"
@@ -53,42 +53,47 @@
 
             <p>Minimum account that can still see this post</p>
 
-            <input 
-                type="radio"
-                name="tier" 
-                value="1"
-                label="free"
-            > 
-            <label for="free">Basic</label>
+            <label>
+                <input 
+                    type="radio"
+                    name="tier" 
+                    value="1"
+                    label="free"
+                > 
+                🆓 Basic
+            </label>
 
-            <input 
-                type="radio"
-                name="tier" 
-                value="2"
-                label="bronze"
-            > 
-            <label for="bronze">Bronze - $1 per month</label>
+            <label>
+                <input 
+                    type="radio"
+                    name="tier" 
+                    value="2"
+                    label="bronze"
+                > 
+                🥉 Bronze 
+            </label>
 
-            <input 
-                type="radio"
-                name="tier" 
-                value="3"
-                label="silver"
-            > 
-            <label for="silver">Silver - $5 per month</label>
+            <label>
+                <input 
+                    type="radio"
+                    name="tier" 
+                    value="3"
+                    label="silver"
+                > 
+                🥈 Silver 
+            </label>
 
-            <input 
-                type="radio"
-                name="tier" 
-                value="4"
-                label="gold"
-            > 
-            <label for="bronze">Gold - $10 per month</label>
+            <label>
+                <input 
+                    type="radio"
+                    name="tier" 
+                    value="4"
+                    label="gold"
+                > 
+                🥇 Gold 
+            </label>
 
-            <br>
-            <br>
-
-            <button>Publish</button>
+            <button id="post-new-button">Publish</button>
 
         </form>
 

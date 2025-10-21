@@ -189,8 +189,62 @@ iframe {
     margin-bottom: 0.5rem;
 }
 
+.multiline-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;        /* Number of lines before cutting off */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 /* POST PAGE -------------------------------------------- */
 
+#comments button {
+    width: 100%;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 0;
+    padding: 1rem;
+}
+
+/* NEW POST PAGE -------------------------------------------- */
+
+
+#post-new-button { 
+    margin-top: 1rem;
+    width: 100%;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 0;
+    padding: 1rem;
+}
+
+
+/* ADMIN -------------------------------------------- */
+
+details[open] > summary {
+    font-weight: bold;
+    font-size: larger;
+}
+
+details a[role="button"] {
+    width: 100%;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 0;
+    padding: 1rem;
+}
+
+#detailsButtons {
+    display: flex;
+    gap: 1rem;
+}
 
 /* MESSAGES -------------------------------------------- */
 
@@ -213,15 +267,4 @@ li {
     list-style-type: none;
 }
 
-details[open] > summary {
-    font-weight: bold;
-}
-
-.multiline-ellipsis {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;        /* Number of lines before cutting off */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
   

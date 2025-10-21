@@ -49,13 +49,19 @@
                 <p>First name: {{user.name}}</p>
 
                 <p>Email: {{user.email}}</p>
+
+                <div id="detailsButtons">
                 
-                <a href="/user/{{user.id}}">View Profile</a>
+                
+                
+                <a href="/user/{{user.id}}" role="button">View Profile</a>
 
-                <a href="/admin-delete-user/{{user.id}}" onclick="return confirm('Are you sure you want to delete user {{user.id}}?');" >Delete Account</a>
+                <a href="/admin-delete-user/{{user.id}}" onclick="return confirm('Are you sure you want to delete user {{user.id}}?');" role="button">Delete Account</a>
 
-                <a href="/admin-unverify-user/{{user.id}}">Unverify User</a>
+                <a href="/admin-unverify-user/{{user.id}}" role="button">Unverify User</a>
 
+                </div>
+                
                 <form action="/admin-change-tier-user/{{user.id}}" method="POST">
 
                     <label for="tier">Change tier: </label>

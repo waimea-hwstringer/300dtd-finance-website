@@ -51,7 +51,9 @@
 
         </footer>
 
-        <br>
+    </article>
+
+    <article id="comments">
 
         {% if session.tier > 2 or session.is_admin %}
 
@@ -82,7 +84,7 @@
             {% for comment in comments %}
 
                 <li id="comments">
-                    <span><a href="/user/{{comment.c_author}}">👤 {{ comment.c_username }}</a> - {{ comment.c_date }}</span>
+                    <span><a href="/user/{{comment.c_author}}">👤 {{ comment.c_username }}</a> - {{ comment.c_date | localtimestamp }}</span>
                     <p>
                         {{ comment.c_content }}
 
