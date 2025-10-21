@@ -15,7 +15,7 @@
 
 {% block content %}
 
-    <article>
+    <article id="register">
 
         <header>
             <h2>Register</h2>
@@ -53,10 +53,10 @@
             >
 
             <p>The following account tiers will affect how you use this site. </p>
-            <p>A Basic tier will allow you to see some posts, and no comments.</p>
-            <p>A Bronze tier will allow you to see some more posts and comments.</p>
-            <p>A Silver tier will allow you to see most posts and comments, and post comments. </p>
-            <p>A Gold tier will allow you to see all available content.</p>
+            <p>🆓Basic tier will allow you to see some posts, and no comments.</p>
+            <p>🥉Bronze tier will allow you to see some more posts and comments.</p>
+            <p>🥈Silver tier will allow you to see most posts and comments, and post comments. </p>
+            <p>🥇Gold tier will allow you to see all available content.</p>
 
             <input 
                 type="radio"
@@ -66,6 +66,8 @@
             > 
             <label for="free">🆓Basic - Free</label>
 
+            <br>
+
             <input 
                 type="radio"
                 name="tier" 
@@ -74,6 +76,8 @@
             > 
             <label for="bronze">🥉Bronze - $1 per month</label>
 
+            <br>
+
             <input 
                 type="radio"
                 name="tier" 
@@ -81,6 +85,8 @@
                 label="silver"
             > 
             <label for="silver">🥈Silver - $5 per month</label>
+
+            <br>
 
             <input 
                 type="radio"

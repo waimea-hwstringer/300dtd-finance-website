@@ -19,69 +19,69 @@
 
 {% block content %}
 
-    {% for post in posts %}
+    <section id="home">
 
-        {% if (session.tier >= post.min_tier and user.verified == 1) or (session.is_admin ) or (user.verified == 0 and post.min_tier == 1) %}
-            
-            <li>
-                <a href="/post/{{ post.p_id }}">
-                  <strong>{{ post.title }}</strong> by {{ post.username }}
-                </a>
+        {% for post in posts %}
 
-                {% if post.video_id %}
+            {% if (session.tier >= post.min_tier and user.verified == 1) or (session.is_admin ) or (user.verified == 0 and post.min_tier == 1) %}
 
-                    <br>
+                <li>
+                    <a href="/post/{{ post.p_id }}">
+                      <p id="homePostTitle">{{ post.title }}</p> 
+                    </a>
 
-                    <iframe 
-                    width="560" height="315" 
-                    src="https://www.youtube.com/embed/{{ post.video_id }}" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    allowfullscreen>
-                </iframe>
+                    <p id="author">by {{ post.username }}</p>
 
-                {% else %}
+                    {% if post.video_id %}
 
-                    <br>
+                        <iframe 
+                        width="560" height="315" 
+                        src="https://www.youtube.com/embed/{{ post.video_id }}" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                        </iframe>
 
-                    <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
+                    {% elif post.name and ('.jpg' in post.name or '.png' in post.name or '.jpeg' in post.name) %} {#checks if post has an image#}
+                        
+                        <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
+                    
+                    {% endif %}
 
-                {% endif %}
+                    <a href="/post/{{ post.p_id }}" class="multiline-ellipsis" id="homePostContent">{{ post.content }}</a>
 
-                <p class="multiline-ellipsis"> {{ post.content }}</p>
+                </li>
 
-            </li>
-        
-        {% else%}
+            {% else%}
 
-            <li>
-            
-                <a href="/home/">
-                  <strong>{{ post.title }}</strong> by {{ post.username }}
-                </a>
+                <li>
 
-                <p>🔒 <strong>Unlock</strong> this post by getting a <strong>higher tier!</strong> It requires a minimum tier of {% include "components/tier-icon-name-(for_post).jinja" %} and you must be <strong>verified</strong>.</p>
-            
-            </li>
-        
+                    <a href="/home/">
+                      <strong>{{ post.title }}</strong> by {{ post.username }}
+                    </a>
+
+                    <p>🔒 <strong>Unlock</strong> this post by getting a <strong>higher tier!</strong> It requires a minimum tier of {% include "components/tier-icon-name-(for_post).jinja" %} and you must be <strong>verified</strong>.</p>
+
+                </li>
+
+            {% endif %}
+
+
+        {% else %}
+
+            <p>No posts!</p>
+
+        {% endfor %}
+
+        {% if session.tier == 0 %}
+
+            <a href="/new-post" role="button">+</a>
+
         {% endif %}
-        
 
-    {% else %}
-
-        <p>No posts!</p>
-
-    {% endfor %}
-
-    <br>
-
-    {% if session.tier == 0 %}
-    
-        <a href="/new-post" role="button">Make a post</a>
-
-    {% endif %}
+    </section>
 
 {% endblock %}
 

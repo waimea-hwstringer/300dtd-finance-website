@@ -15,13 +15,11 @@
 
 {% block content %}
 
-    <article>
-
-        <header>
-            <h2>Login...</h2>
-            <span>Or, if you don't have an account, <a href="/register">register</a></span>
-        </header>
-
+    <article id="login">
+        
+        <h2>Log In</h2>
+        <p>No account? <a href="/register">register</a> here</p>
+        
         <form action="/login-user" method="POST">
 
             <input

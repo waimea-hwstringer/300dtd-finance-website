@@ -41,23 +41,19 @@
 
                 {% if session.is_admin %}
 
-                    <li><a href="/admin" role="button"> Admin Dashboard</a></li>
+                    <li><a href="/admin" role="button"> Admin</a></li>
 
                 {% endif%}
 
                 {% if session.user_name %}
 
-                    <li><a href="/user/{{session.user_id}}"> 👤 {{ session.user_username }} </a></li>
+                    <li><a href="/user/{{session.user_id}}" role="button"> 👤 {{ session.user_username }} </a></li>
 
                     <li><a href="/home" role="button">Home</a></li>
 
                 {% endif %}
 
-                {% if session.user_id %}
-
-                    <li><a href="/logout" role="button">Logout</a></li>
-
-                {% else %}
+                {% if not session.user_id %}
 
                     <li><a href="/login" role="button">Login</a></li>
                     <li><a href="/register" role="button">Register</a></li>
@@ -84,7 +80,7 @@
     {# Show debug info. Comment this out if not needed #}
     {% include "components/debug.jinja" %}
 
-    <footer>
+    <footer id="pageFooter">
 
         <p>Dollar Scholar 2025 &copy;</p>
 

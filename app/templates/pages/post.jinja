@@ -15,11 +15,12 @@
 
 {% block content %}
 
-    <article>
+    <article id="post">
 
         <header>
             <h1>{{post.title}}</h1>
-            <h4>by <a href="/user/{{ post.author }}">👤{{ post.username }}</a> - {{ post.date | localtimestamp }}</h4>
+            <h4>by <a href="/user/{{ post.author }}">👤{{ post.username }}</a></h4>
+            <p>{{ post.date | localtimestamp }}</p>
         </header>
 
         <p>{{ post.content }}</p>
@@ -74,7 +75,7 @@
 
     </article>
 
-    <article>
+    <article id="comments">
         
         {% if session.tier > 1 or session.is_admin %}
             
