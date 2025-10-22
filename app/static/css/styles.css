@@ -29,6 +29,9 @@ nav {
     background-color: var(--accent);
     margin: -1rem;
     padding: 1rem;
+
+    width: 100vw;
+    
 }
 
 nav li a {
@@ -62,6 +65,8 @@ main {
     margin: -1rem;
     padding: 3rem;
     justify-content: center;
+    width: 100vw;
+    margin: 0;
 }
 
 /* LANDING PAGE -------------------------------------------- */
@@ -238,12 +243,32 @@ details a[role="button"] {
     padding: 0.4rem;
     border-radius: 1rem;
     border: 0;
-    padding: 1rem;
+    padding: 0.3rem;
 }
 
 #detailsButtons {
     display: flex;
     gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+#changeTierAdmin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#tierSelect {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#tierSelect input {
+    flex: 1;
+    background-color: var(--secondary);
+    color: var(--text);
+    border: 0;
+    border-radius: 1rem;
 }
 
 /* MESSAGES -------------------------------------------- */

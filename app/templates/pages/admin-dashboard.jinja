@@ -22,7 +22,7 @@
 
             <span><strong>{{user.username}}</strong></span>
 
-            <span> has applied for tier {% include "components/tier-icon.jinja" %} </span>
+            <span> has applied for tier {% include "components/tier-icon-name.jinja" %} </span>
                 
             <a href="/admin-verify-user/{{user.id}}">✔</a>
 
@@ -49,34 +49,36 @@
                 <p>First name: {{user.name}}</p>
 
                 <p>Email: {{user.email}}</p>
-
-                <div id="detailsButtons">
                 
-                
-                
-                <a href="/user/{{user.id}}" role="button">View Profile</a>
-
-                <a href="/admin-delete-user/{{user.id}}" onclick="return confirm('Are you sure you want to delete user {{user.id}}?');" role="button">Delete Account</a>
-
-                <a href="/admin-unverify-user/{{user.id}}" role="button">Unverify User</a>
-
-                </div>
-                
-                <form action="/admin-change-tier-user/{{user.id}}" method="POST">
+                <form action="/admin-change-tier-user/{{user.id}}" method="POST" id="changeTierAdmin">
 
                     <label for="tier">Change tier: </label>
 
-                    <select name="tier">
-                        <option value="1">🆓Basic</option>
-                        <option value="2">🥉Bronze</option>
-                        <option value="3">🥈Silver</option>
-                        <option value="4">🥇Gold</option>
-                        <option value="0">👑Admin</option>
-                    </select>
+                    <div id="tierSelect">
+                        
+                        <select name="tier">
+                            <option value="1">🆓Basic</option>
+                            <option value="2">🥉Bronze</option>
+                            <option value="3">🥈Silver</option>
+                            <option value="4">🥇Gold</option>
+                            <option value="0">👑Admin</option>
+                        </select>
+                
+                        <input type="submit">
                     
-                    <input type="submit">
+                    </div>
 
                 </form>
+
+                <div id="detailsButtons">
+
+                    <a href="/user/{{user.id}}" role="button">View Profile</a>
+
+                    <a href="/admin-unverify-user/{{user.id}}" role="button">Unverify</a>
+
+                    <a href="/admin-delete-user/{{user.id}}" onclick="return confirm('Are you sure you want to delete user {{user.id}}? You will not be able to recover their account.');" role="button">Delete</a>
+
+                </div>
             
             </details>
 
