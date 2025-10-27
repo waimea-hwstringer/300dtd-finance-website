@@ -333,7 +333,7 @@ def user(id):
             SELECT 
                 comments.id AS c_id,
                 comments.author,
-                comments.post,
+                comments.post AS c_post,
                 comments.date,
                 comments.content,
                 NULL AS title,         -- comments don't have titles, videos etc

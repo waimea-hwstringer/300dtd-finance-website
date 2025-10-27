@@ -200,7 +200,7 @@ iframe {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+}
 
 /* POST PAGE -------------------------------------------- */
 
@@ -258,18 +258,59 @@ details a[role="button"] {
     gap: 0.5rem;
 }
 
-#tierSelect {
+.tierSelect {
     display: flex;
     gap: 0.5rem;
 }
 
-#tierSelect input {
+.tierSelect input {
     flex: 1;
     background-color: var(--secondary);
     color: var(--text);
     border: 0;
     border-radius: 1rem;
 }
+
+/* USER -------------------------------------------- */
+
+#changeTierUser {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#logOutButton {
+    background-color: var(--secondary);
+    color: var(--text);
+    border: 0;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+#user li {
+    background-color: var(--accent);
+    color: var(--text);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    list-style-type: none;
+}
+
+#user ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#user a {
+    text-decoration: none;
+}
+
+.bin {
+    width: 1rem;
+    height: 1rem;
+}
+
 
 /* MESSAGES -------------------------------------------- */
 
