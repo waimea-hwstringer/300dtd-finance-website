@@ -27,10 +27,12 @@ body {
 
 nav {
     background-color: var(--accent);
-    margin: -1rem;
     padding: 1rem;
-
-    width: 100vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
     
 }
 
@@ -60,13 +62,12 @@ main {
 }
 
 #pageFooter{
-    display: flex;
     background-color: var(--accent);
-    margin: -1rem;
     padding: 3rem;
-    justify-content: center;
-    width: 100vw;
-    margin: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* pushes footer to bottom */
+    box-sizing: border-box;
 }
 
 /* LANDING PAGE -------------------------------------------- */
@@ -86,7 +87,20 @@ main {
     border-radius: 1rem;
     margin-bottom: 1rem;
     margin-left: none;
+    display: flex;
+    flex-direction: column;
 }
+
+.landingHeaderPoint {
+    display: flex;
+}
+
+#landing svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+}
+
 
 #landing ul {
     padding-left: 0;
@@ -271,6 +285,11 @@ details a[role="button"] {
     border-radius: 1rem;
 }
 
+.tick {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
 /* USER -------------------------------------------- */
 
 #changeTierUser {
@@ -285,6 +304,15 @@ details a[role="button"] {
     border: 0;
     border-radius: 1rem;
     width: 100%;
+}
+
+#user {
+    display: flex;
+    flex-direction: column;
+}
+
+#user p {
+    margin-left: 2rem;
 }
 
 #user li {
