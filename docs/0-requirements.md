@@ -112,58 +112,55 @@ Replace this text with an explanation of what you will need to consider moving f
 
 ---
 
-## NAME OF IMPLICATION EXAMPLE
-
-Replace this text with a clear explanation of what the implication means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the implication is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
-
----
-
 # User Experience (UX) Principles
 
-## NAME OF UX PRINCIPLE 1
+## Usefulness
 
-Replace this text with a clear explanation of what the principle means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the principle is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
-
-
-## NAME OF UX PRINCIPLE 2
-
-Replace this text with a clear explanation of what the principle means.
+Products and systems should be genuinely useful and fulfill a real need for a group of end-users.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+Usefulness is an absolutely integral component to making anything, especially a website. The website must be useful, otherwise users will go somewhere else to learn about finance, and they will not want to pay for a service that isn't useful.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+I will need to design my website with a lot of thought and care, making sure each element serves a purpose and that it is not cluttered or confusing. I can do this by testing my website with several different end-users and getting their feedback.
 
 
-## NAME OF UX PRINCIPLE 3
+## Usability
 
-Replace this text with a clear explanation of what the principle means.
+It is essential that products and systems should be easy to use for the intended end-user.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+Having a site that is easy to use is a necessity when designing a web-product. If the product is not easy to use, end-users will just get frustrated with it and will find finance advice somewhere else. People will not want to pay for a service that they find is difficult to use.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+I must place UI elements thoughtfully to ensure that they are not confusing for the user. I want to aim for an ergonomic site that feels good and clear to use. To do this I should follow common website conventions, as well as collect feedback from a wide range of testers.
+
+
+## Desirability
+
+Imagery used, the identity of the product / brand, and other design elements, should all be used to evoke emotion and appreciation of the product / system.
+
+### Relevance to the System
+
+The website must be desirable for users to want to use it. If the website is not desirable, maybe because it has poor colour choices or UI, users will go to a different site to get their financial advice. The website must look and feel good to use in order for it to be desirable.
+
+### Impact / Considerations
+
+I must ensure that the website looks and feels good to use. I can ask testers what emotions they feel when they're using my site and see if i could tweak anything to make the site give off the image that I would like to present.
+
+## Findability
+
+Systems should be easily navigable, so end-users can find the content or functionality they need.
+
+### Relevance to the System
+
+Having a website that is easily navigable is crucial to having a successful website. If users cannot easily navigate to what they want to find, they will very quickly become frustrated with the site and will go elsewhere to find their financial information, which is not what we want.
+
+### Impact / Considerations
+
+When users are testing the site I will check how long it takes for them to find what they're searching for. If they struggle to find a certain page then I will need to make a change. Having important pages at the navbar will hopefully ensure that important info is easy to find.
 

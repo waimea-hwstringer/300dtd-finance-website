@@ -9,13 +9,15 @@ by Harry Stringer
 
 Replace this text with your project description and list the key features below
 
-Dollar Scholar will be a financial advice space where users can get useful information about personal finance.
+Dollar Scholar is a financial advice space where users can get useful information about personal finance from professionals.
 
-- Feature 1 here
-- Feature 2 here
-- Feature 3 here
-- Feature 4 here
-- Feature 5 here
+- Users can make accounts & view posts to get financial advice
+- Posts can have images or youtube videos attached
+- Comments can be made on posts to ask further questions
+- Different account tiers dictate what the user can or can't do
+- Admins can make posts and change peoples tiers
+- All new accounts must have their tier verified by an admin in order to gain the benefits unlocked by that tier
+- Users can request their tier to be changed after they've created their account
 
 
 ---
