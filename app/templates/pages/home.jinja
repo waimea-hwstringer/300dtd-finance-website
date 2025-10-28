@@ -27,7 +27,7 @@
 
                 <li>
                     <a href="/post/{{ post.p_id }}">
-                      <p id="homePostTitle">{{ post.title }}</p> 
+                        <p id="homePostTitle">{{ post.title }}</p> 
                     </a>
 
                     <p id="author">by {{ post.username }}</p>
@@ -44,10 +44,12 @@
                         allowfullscreen>
                         </iframe>
 
-                    {% elif post.name and ('.jpg' in post.name or '.png' in post.name or '.jpeg' in post.name) %} {#checks if post has an image#}
+                    {% elif post.has_image %} {#checks if post has an image#}
+
+                        <a href="/post/{{ post.p_id }}">
+                            <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
+                        </a>
                         
-                        <img src="/image/{{ post.p_id }}" alt="{{ post.name }}">
-                    
                     {% endif %}
 
                     <a href="/post/{{ post.p_id }}" class="multiline-ellipsis" id="homePostContent">{{ post.content }}</a>

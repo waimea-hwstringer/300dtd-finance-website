@@ -7,9 +7,7 @@ by Harry Stringer
 
 ## Project Description
 
-Replace this text with your project description and list the key features below
-
-Dollar Scholar is a financial advice space where users can get useful information about personal finance from professionals.
+Dollar Scholar is a financial advice space where users can get useful, relevant and personalised information about personal finance from professionals.
 
 - Users can make accounts & view posts to get financial advice
 - Posts can have images or youtube videos attached

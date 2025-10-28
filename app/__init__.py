@@ -58,6 +58,7 @@ def home():
                 posts.content,
                 posts.video_id,
                 posts.min_tier,
+                CASE WHEN posts.image_data IS NOT NULL THEN 1 ELSE 0 END AS has_image,
                 users.id AS u_id,
                 users.username
             FROM posts

@@ -59,6 +59,15 @@ nav a[role=button] {
 
 main {
     flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContents {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 #pageFooter{
@@ -66,7 +75,7 @@ main {
     padding: 3rem;
     text-align: center;
     width: 100%;
-    margin-top: auto; /* pushes footer to bottom */
+    margin-top: auto; 
     box-sizing: border-box;
 }
 

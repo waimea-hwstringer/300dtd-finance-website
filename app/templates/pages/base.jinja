@@ -30,61 +30,48 @@
 </head>
 
 <body>
-
-    <header>
-        <nav>
-            <ul>
-                <li><strong><a href="/"><img src="/static/images/icon.png" id="navIcon"></a></strong></li>
-            </ul>
-
-            <ul>
-
-                {% if session.is_admin %}
-
-                    <li><a href="/admin" role="button"> Admin</a></li>
-
-                {% endif%}
-
-                {% if session.user_name %}
-
-                    <li><a href="/user/{{session.user_id}}" role="button"> 👤 {{ session.user_username }} </a></li>
-
-                    <li><a href="/home" role="button">Home</a></li>
-
-                {% endif %}
-
-                {% if not session.user_id %}
-
-                    <li><a href="/login" role="button">Login</a></li>
-                    <li><a href="/register" role="button">Register</a></li>
-
-                {% endif %}
-
-            </ul>
-        </nav>
-    </header>
-
+    <nav>
+        <ul>
+            <li><strong><a href="/"><img src="/static/images/icon.png" id="navIcon"></a></strong></li>
+        </ul>
+        <ul>
+            {% if session.is_admin %}
+                <li><a href="/admin" role="button"> Admin</a></li>
+            {% endif%}
+            {% if session.user_name %}
+                <li><a href="/user/{{session.user_id}}" role="button"> 👤 {{ session.user_username }} </a></li>
+                <li><a href="/home" role="button">Home</a></li>
+            {% endif %}
+            {% if not session.user_id %}
+                <li><a href="/login" role="button">Login</a></li>
+                <li><a href="/register" role="button">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
 
     {# Show flash messages from any previous events #}
     {% include "components/messages.jinja" %}
 
 
     <main>
+        <div class="mainContents">
 
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
 
+        </div>
     </main>
 
 
     {# Show debug info. Comment this out if not needed #}
     {% include "components/debug.jinja" %}
 
-    <footer id="pageFooter">
+    <div id="pageFooter">
 
         <p>Dollar Scholar 2025 &copy;</p>
 
-    </footer>
+    </div>
 
 </body>
 
