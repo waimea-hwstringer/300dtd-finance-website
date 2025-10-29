@@ -17,6 +17,8 @@ Dollar Scholar is a financial advice space where users can get useful, relevant 
 - All new accounts must have their tier verified by an admin in order to gain the benefits unlocked by that tier
 - Users can request their tier to be changed after they've created their account
 
+**ALL ACCOUNTS HAVE THE PASSWORD: password123**
+
 
 ---
 

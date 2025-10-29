@@ -8,15 +8,6 @@ Develop the system until it is fully featured, with a refined UI and it satisfie
 
 ---
 
-## Updated Database Schema (if it changed)
-
-Replace this text with notes regarding the DB schema.
-
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
-
-
----
-
 ## Final Implementation
 
 The web app is fully implemented with a refined UI:
@@ -26,32 +17,28 @@ The web app is fully implemented with a refined UI:
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing User Interfaces
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Just having the text "delete" looks a little bit unrefined, common website conventions would use an icon. During my latest meeting with my client, I asked about whether or not he felt an icon would be better.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+> "Well I think having the delete text is fine, but for accessibility and icon would be beneficial as well. Could you put a bin icon next to it?"
 
-### Changes / Improvements
+![Posts without delete icon](screenshots/UI-post1.png)
 
-Replace this text with notes any improvements you made as a result of the testing.
+I then followed this sentiment and added an svg icon next to the delete text. I will follow this convention through out the site, to keep things accessible for everyone.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Posts with delete icon](screenshots/UI-post2.png)
 
 
 ---
 
-## Testing FEATURE NAME HERE
+I also realised that whilst posts had a readable date and time, the comments did not. 
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+![Comments without readable dates](screenshots/UI-comments1.png)
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+This would not fit with the rest of the site and it is not very friendly for users to read, so I added a format that is consistent with the rest of the site.
 
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Comments with readable dates](screenshots/UI-comments2.png))
 
 
 ---
