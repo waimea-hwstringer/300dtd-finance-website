@@ -51,8 +51,6 @@ It is crucial that this service is usable. If the users find the site frustratin
 I will need to make my site as easy and intuitive to use as possible to ensure that a wide variety of people will be able to utilise and enjoy my site. I can do this by abiding by Neilssen's Usability Heuristics.
 When I test the site I will need to use a wide variety of people to ensure that my site is easy to use for people of different technological and financial skill sets.
 
-
-
 ## Aesthetics
 
 Aesthetics is how the website looks and feels. Things like the colour, layout and vibe about the website.
@@ -74,14 +72,12 @@ The social implication means how the website affects its users and society as a 
 
 ### Relevance to the System
 
-My website will have a very wide range of users, that may not have a whole lot in common. I should keep that users of the site must 
+My website will have a very wide range of users, that may not have a whole lot in common. I should keep that users of the site must feel safe and not ostracized.
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
 
 ### Impact / Considerations
 
- I will need to consider the diverse group of people using the site. People will have different beliefs, cultures and identities. I should use neutral terms and phrasings, and not include polarising language. When testing my site, I should ask if users feel offended by anything. This will guarantee that my site will be socially sensitive and modern.
-
+I will need to consider the diverse group of people using the site. People will have different beliefs, cultures and identities. I should use neutral terms and phrasings, and not include polarising language. When testing my site, I should ask if users feel offended by anything. This will guarantee that my site will be socially sensitive and modern.
 
 
 ## Accessibility
@@ -95,20 +91,6 @@ Accessibility is a necessity when it comes to designing a website. Users will ha
 ### Impact / Considerations
 
 I should test the website on a variety of devices, such as laptops, tablets and mobile phones to ensure that it is accessible on all devices. I must also make sure that people with different capabilities are able to easily use the site. For example, when deciding a colour palette I should keep in mind that some users may be colour blind. I should check that the palette still looks good by validating this with a colour blind tester.
-
-
-
-## End Users
-
-End users are the people that use your website.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the implication is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
 
 ---
 

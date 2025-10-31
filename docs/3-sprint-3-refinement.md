@@ -12,12 +12,33 @@ Develop the system until it is fully featured, with a refined UI and it satisfie
 
 The web app is fully implemented with a refined UI:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE SYSTEM HERE**
+Landing page
+![The landing page](screenshots/UI-landing.gif)
 
+Account registration
+![Making an account](screenshots/UI-registration.gif)
+
+Logging in
+![Logging in](screenshots/UI-login.gif)
+
+Account Verification
+![Admin verifies a user](screenshots/UI-verification.gif)
+
+Making a post
+![Admin creates a post with an image and video](screenshots/UI-post.gif)
+
+Making and deleting comments
+![User makes and deletes a comment](screenshots/UI-comment.gif)
+
+Deleting a post
+![Admin deletes a post](screenshots/UI-delete.gif)
+
+User without adequate tier
+![User logs in and does not have a high enough tier to see some posts](screenshots/UI-tier.gif)
 
 ---
 
-## Testing User Interfaces
+## User Interface Changes
 
 Just having the text "delete" looks a little bit unrefined, common website conventions would use an icon. During my latest meeting with my client, I asked about whether or not he felt an icon would be better.
 
@@ -38,57 +59,26 @@ I also realised that whilst posts had a readable date and time, the comments did
 
 This would not fit with the rest of the site and it is not very friendly for users to read, so I added a format that is consistent with the rest of the site.
 
-![Comments with readable dates](screenshots/UI-comments2.png))
+![Comments with readable dates](screenshots/UI-comments2.png)
 
 
 ---
 
-## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+Another piece of feedback I got from my client was:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+> "It would be good if it also said the name of the tier next to the tier icon, just so I can easily read it"
 
-### Changes / Improvements
+![Admin dash with just icons](screenshots/UI-admin1.png)
 
-Replace this text with notes any improvements you made as a result of the testing.
+To resolve this, I used a jinja filter to add the text next to the icon.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
-
----
-
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
-
----
-
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Admin dash with text and icons](screenshots/UI-admin2.png)
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+This sprint went very smoothly and quickly. It just consisted of me styling the site and making slight adjustments and tweaks to things. I already knew what the site was supposed to look like because of my figma mockup that I made for my client.
 
